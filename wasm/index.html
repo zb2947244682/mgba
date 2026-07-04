@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>mGBA WebAssembly Demo</title>
+  <style>
+    body { font-family: sans-serif; background: #1a1a1a; color: #eee; margin: 0; padding: 20px; text-align: center; }
+    canvas { image-rendering: pixelated; border: 2px solid #444; background: #000; width: 480px; height: 320px; max-width: 100%; }
+    .controls { margin: 16px 0; }
+    button { margin: 4px; padding: 8px 16px; background: #333; color: #fff; border: 1px solid #666; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #444; }
+    input[type=file] { color: #eee; }
+    .status { margin: 8px 0; color: #aaa; font-size: 14px; }
+    .hint { color: #888; font-size: 12px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>mGBA WebAssembly Demo</h1>
+  <div class="controls">
+    <input type="file" id="romFile" accept=".gba,.bin,.zip">
+    <button id="startBtn" disabled>开始运行</button>
+    <button id="resetBtn" disabled>复位</button>
+    <button id="saveStateBtn" disabled>存档</button>
+    <button id="loadStateBtn" disabled>读档</button>
+  </div>
+  <div class="status" id="status">正在加载 mGBA 核心...</div>
+  <canvas id="screen" width="240" height="160"></canvas>
+  <div class="hint">
+    键盘控制：X=A，Z=B，Enter=Start，Shift=Select，方向键=方向，A/S=L/R
+  </div>
+
+  <script src="mgba.js"></script>
+  <script>
+    const canvas = document.getElementById('screen');
+    const ctx = canvas.getContext('2d');
+    const statusEl = document.getElementById('status');
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const saveStateBtn = document.getElementById('saveStateBtn');
+    const loadStateBtn = document.getElementById('loadStateBtn');
+    const romFileInput = document.getElementById('romFile');
+
+    let module = null;
+    let core = 0;
+    let videoPtr = 0;
+    let width = 0;
+    let height = 0;
+    let frameReq = null;
+    let running = false;
+    let savedState = null;
+
+    const KEY_MAP = {
+      'x': 0,      // A
+      'z': 1,      // B
+      'Shift': 2,  // SELECT
+      'Enter': 3,  // START
+      'ArrowRight': 4,
+      'ArrowLeft': 5,
+      'ArrowUp': 6,
+      'ArrowDown': 7,
+      's': 8,      // R
+      'a': 9,      // L
+    };
+    let currentKeys = 0;
+
+    // cwrap helpers
+    let create, destroy, loadRom, reset, runFrame, getWidth, getHeight, setVideoBuffer;
+    let getAudioSampleRate, readAudio, setKeys, clearKeys, stateSize, saveState, loadState;
+
+    function setStatus(msg) {
+      statusEl.textContent = msg;
+      console.log('[mGBA]', msg);
+    }
+
+    async function init() {
+      try {
+        module = await createModule();
+
+        create = module.cwrap('mgba_create', 'number', []);
+        destroy = module.cwrap('mgba_destroy', null, ['number']);
+        loadRom = module.cwrap('mgba_load_rom', 'number', ['number', 'number', 'number']);
+        reset = module.cwrap('mgba_reset', null, ['number']);
+        runFrame = module.cwrap('mgba_run_frame', null, ['number']);
+        getWidth = module.cwrap('mgba_get_video_width', 'number', ['number']);
+        getHeight = module.cwrap('mgba_get_video_height', 'number', ['number']);
+        setVideoBuffer = module.cwrap('mgba_set_video_buffer', null, ['number', 'number', 'number']);
+        getAudioSampleRate = module.cwrap('mgba_get_audio_sample_rate', 'number', ['number']);
+        readAudio = module.cwrap('mgba_read_audio', 'number', ['number', 'number', 'number']);
+        setKeys = module.cwrap('mgba_set_keys', null, ['number', 'number']);
+        clearKeys = module.cwrap('mgba_clear_keys', null, ['number', 'number']);
+        stateSize = module.cwrap('mgba_state_size', 'number', ['number']);
+        saveState = module.cwrap('mgba_save_state', 'number', ['number', 'number']);
+        loadState = module.cwrap('mgba_load_state', 'number', ['number', 'number']);
+
+        core = create();
+        if (!core) throw new Error('创建核心失败');
+
+        width = getWidth(core);
+        height = getHeight(core);
+        canvas.width = width;
+        canvas.height = height;
+
+        videoPtr = module._malloc(width * height * 4);
+        setVideoBuffer(core, videoPtr, width);
+
+        setStatus(`核心就绪 (${width}x${height})，请选择 ROM 文件`);
+        startBtn.disabled = true;
+        resetBtn.disabled = false;
+        saveStateBtn.disabled = false;
+        loadStateBtn.disabled = true;
+      } catch (err) {
+        setStatus('加载失败: ' + err.message);
+        console.error(err);
+      }
+    }
+
+    async function loadRomFile(file) {
+      if (!core) return;
+      const arrayBuffer = await file.arrayBuffer();
+      const rom = new Uint8Array(arrayBuffer);
+      const ptr = module._malloc(rom.length);
+      module.HEAPU8.set(rom, ptr);
+      const ok = loadRom(core, ptr, rom.length);
+      module._free(ptr);
+
+      if (ok) {
+        setStatus(`ROM 加载成功: ${file.name} (${rom.length} bytes)`);
+        startBtn.disabled = false;
+        resetBtn.disabled = false;
+      } else {
+        setStatus('ROM 加载失败');
+      }
+    }
+
+    function renderFrame() {
+      const imageData = ctx.createImageData(width, height);
+      const src = module.HEAPU8.subarray(videoPtr, videoPtr + width * height * 4);
+      imageData.data.set(src);
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    function runLoop() {
+      if (!running) return;
+      setKeys(core, currentKeys);
+      runFrame(core);
+      renderFrame();
+      frameReq = requestAnimationFrame(runLoop);
+    }
+
+    startBtn.addEventListener('click', () => {
+      if (!running) {
+        running = true;
+        startBtn.textContent = '暂停';
+        runLoop();
+      } else {
+        running = false;
+        startBtn.textContent = '继续';
+        cancelAnimationFrame(frameReq);
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      if (core) reset(core);
+      setStatus('已复位');
+    });
+
+    saveStateBtn.addEventListener('click', () => {
+      if (!core) return;
+      const size = stateSize(core);
+      if (!size) return;
+      const ptr = module._malloc(size);
+      const ok = saveState(core, ptr);
+      if (ok) {
+        savedState = new Uint8Array(module.HEAPU8.subarray(ptr, ptr + size));
+        loadStateBtn.disabled = false;
+        setStatus(`存档已保存 (${size} bytes)`);
+      } else {
+        setStatus('存档失败');
+      }
+      module._free(ptr);
+    });
+
+    loadStateBtn.addEventListener('click', () => {
+      if (!core || !savedState) return;
+      const size = stateSize(core);
+      if (savedState.length !== size) return;
+      const ptr = module._malloc(size);
+      module.HEAPU8.set(savedState, ptr);
+      const ok = loadState(core, ptr);
+      module._free(ptr);
+      setStatus(ok ? '读档成功' : '读档失败');
+    });
+
+    romFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) loadRomFile(file);
+    });
+
+    window.addEventListener('keydown', (e) => {
+      const key = KEY_MAP[e.key];
+      if (key !== undefined) {
+        currentKeys |= (1 << key);
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      const key = KEY_MAP[e.key];
+      if (key !== undefined) {
+        currentKeys &= ~(1 << key);
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (core) destroy(core);
+    });
+
+    init();
+  </script>
+</body>
+</html>
