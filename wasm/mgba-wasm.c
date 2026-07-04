@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <mgba/core/config.h>
 #include <mgba/core/core.h>
 #include <mgba/gba/core.h>
 #include <mgba-util/vfs.h>
@@ -111,6 +112,50 @@ EMSCRIPTEN_KEEPALIVE int mgba_load_rom(struct mCore* core, const void* data, siz
 
 EMSCRIPTEN_KEEPALIVE void mgba_reset(struct mCore* core) {
     if (core) core->reset(core);
+}
+
+// Configuration helpers (must be called before mgba_init_core)
+EMSCRIPTEN_KEEPALIVE void mgba_set_config_int(struct mCore* core, const char* key, int value) {
+    if (core && key) {
+        mCoreConfigSetIntValue(&core->config, key, value);
+    }
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_set_config_float(struct mCore* core, const char* key, float value) {
+    if (core && key) {
+        mCoreConfigSetFloatValue(&core->config, key, value);
+    }
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_set_config_string(struct mCore* core, const char* key, const char* value) {
+    if (core && key && value) {
+        mCoreConfigSetValue(&core->config, key, value);
+    }
+}
+
+// SRAM / FLASH savedata helpers
+EMSCRIPTEN_KEEPALIVE size_t mgba_get_save_size(struct mCore* core) {
+    if (!core) return 0;
+    void* sram = NULL;
+    size_t size = core->savedataClone(core, &sram);
+    if (sram) free(sram);
+    return size;
+}
+
+EMSCRIPTEN_KEEPALIVE size_t mgba_read_save(struct mCore* core, void* buffer, size_t size) {
+    if (!core || !buffer || !size) return 0;
+    void* sram = NULL;
+    size_t actual = core->savedataClone(core, &sram);
+    if (!actual || !sram) return 0;
+    size_t copy = actual < size ? actual : size;
+    memcpy(buffer, sram, copy);
+    free(sram);
+    return copy;
+}
+
+EMSCRIPTEN_KEEPALIVE int mgba_write_save(struct mCore* core, const void* data, size_t size) {
+    if (!core || !data || !size) return 0;
+    return core->savedataRestore(core, data, size, true) ? 1 : 0;
 }
 
 EMSCRIPTEN_KEEPALIVE void mgba_run_frame(struct mCore* core) {
