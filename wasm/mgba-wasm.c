@@ -24,7 +24,11 @@ EMSCRIPTEN_KEEPALIVE struct mCore* mgba_create() {
 }
 
 EMSCRIPTEN_KEEPALIVE struct mCore* mgba_create_raw() {
-    return GBACoreCreate();
+    struct mCore* core = GBACoreCreate();
+    if (core) {
+        mCoreInitConfig(core, "wasm");
+    }
+    return core;
 }
 
 EMSCRIPTEN_KEEPALIVE int mgba_init_core(struct mCore* core) {
