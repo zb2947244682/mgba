@@ -162,6 +162,18 @@ EMSCRIPTEN_KEEPALIVE int mgba_write_save(struct mCore* core, const void* data, s
     return core->savedataRestore(core, data, size, true) ? 1 : 0;
 }
 
+// 正确的存档加载入口：用 VFileMemChunk 包装字节流并交给 core->loadSave，
+// 这会把 savedata.vf 设为该 VFile。游戏运行后首次写存档触发类型检测时，
+// GBASavedataInit{Flash,SRAM,EEPROM} 会把 vf 映射进 data，游戏即可读到旧存档。
+// 对 SRAM / FLASH512 / FLASH1M / EEPROM 全类型均有效（类型由游戏运行时检测，不强制）。
+// 必须在首次 runFrame 之前调用（loadROM 之后、reset 之前或之后均可，reset 不会清掉 vf）。
+EMSCRIPTEN_KEEPALIVE int mgba_load_save(struct mCore* core, const void* data, size_t size) {
+    if (!core || !data || !size) return 0;
+    struct VFile* vf = VFileMemChunk(data, size);
+    if (!vf) return 0;
+    return core->loadSave(core, vf) ? 1 : 0;
+}
+
 EMSCRIPTEN_KEEPALIVE void mgba_run_frame(struct mCore* core) {
     if (core) core->runFrame(core);
 }

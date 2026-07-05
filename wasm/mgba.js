@@ -4909,6 +4909,7 @@ var _mgba_set_config_string = Module['_mgba_set_config_string'] = makeInvalidEar
 var _mgba_get_save_size = Module['_mgba_get_save_size'] = makeInvalidEarlyAccess('_mgba_get_save_size');
 var _mgba_read_save = Module['_mgba_read_save'] = makeInvalidEarlyAccess('_mgba_read_save');
 var _mgba_write_save = Module['_mgba_write_save'] = makeInvalidEarlyAccess('_mgba_write_save');
+var _mgba_load_save = Module['_mgba_load_save'] = makeInvalidEarlyAccess('_mgba_load_save');
 var _mgba_run_frame = Module['_mgba_run_frame'] = makeInvalidEarlyAccess('_mgba_run_frame');
 var _mgba_get_video_width = Module['_mgba_get_video_width'] = makeInvalidEarlyAccess('_mgba_get_video_width');
 var _mgba_get_video_height = Module['_mgba_get_video_height'] = makeInvalidEarlyAccess('_mgba_get_video_height');
@@ -4976,6 +4977,7 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['mgba_get_save_size'] != 'undefined', 'missing Wasm export: mgba_get_save_size');
   assert(typeof wasmExports['mgba_read_save'] != 'undefined', 'missing Wasm export: mgba_read_save');
   assert(typeof wasmExports['mgba_write_save'] != 'undefined', 'missing Wasm export: mgba_write_save');
+  assert(typeof wasmExports['mgba_load_save'] != 'undefined', 'missing Wasm export: mgba_load_save');
   assert(typeof wasmExports['mgba_run_frame'] != 'undefined', 'missing Wasm export: mgba_run_frame');
   assert(typeof wasmExports['mgba_get_video_width'] != 'undefined', 'missing Wasm export: mgba_get_video_width');
   assert(typeof wasmExports['mgba_get_video_height'] != 'undefined', 'missing Wasm export: mgba_get_video_height');
@@ -5040,6 +5042,7 @@ function assignWasmExports(wasmExports) {
   _mgba_get_save_size = Module['_mgba_get_save_size'] = createExportWrapper('mgba_get_save_size', wasmExports['mgba_get_save_size'], 1);
   _mgba_read_save = Module['_mgba_read_save'] = createExportWrapper('mgba_read_save', wasmExports['mgba_read_save'], 3);
   _mgba_write_save = Module['_mgba_write_save'] = createExportWrapper('mgba_write_save', wasmExports['mgba_write_save'], 3);
+  _mgba_load_save = Module['_mgba_load_save'] = createExportWrapper('mgba_load_save', wasmExports['mgba_load_save'], 3);
   _mgba_run_frame = Module['_mgba_run_frame'] = createExportWrapper('mgba_run_frame', wasmExports['mgba_run_frame'], 1);
   _mgba_get_video_width = Module['_mgba_get_video_width'] = createExportWrapper('mgba_get_video_width', wasmExports['mgba_get_video_width'], 1);
   _mgba_get_video_height = Module['_mgba_get_video_height'] = createExportWrapper('mgba_get_video_height', wasmExports['mgba_get_video_height'], 1);
