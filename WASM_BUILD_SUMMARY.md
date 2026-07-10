@@ -120,7 +120,75 @@ armInit: 1
 
 ---
 
-## 四、如何使用
+## 四、环境搭建
+
+> 本节面向"拿到一台干净的 Windows 机器，从零搭起编译环境"。已验证组合见 `wasm/README.md` 的"已验证环境"小节，下面是可复现的搭建步骤。
+
+### 1. 操作系统与 Shell
+
+- Windows 10/11，使用 **PowerShell** 执行 `build-wasm.ps1`。
+- Git Bash 可用于跑 `node`、`python -m http.server` 等命令，但编译脚本本身用 PowerShell。
+- 仓库要求 PowerShell 7+（pwsh），Windows 11 自带，或从 GitHub Releases 安装。
+
+### 2. 安装 Emscripten SDK（emsdk）
+
+emsdk 是 Emscripten（emcc）的官方安装器，推荐装到固定目录（脚本默认 `D:\Codes\emsdk`）：
+
+```powershell
+git clone https://github.com/emscripten-core/emsdk.git D:\Codes\emsdk
+cd D:\Codes\emsdk
+.\emsdk install latest
+.\emsdk activate latest
+```
+
+激活后会在 `D:\Codes\emsdk\upstream\emscripten\` 下生成 `emcc.exe`，并自带一个 `python` 与 `node`。
+
+> 踩坑：Windows 自带的"微软商店 python 桩"会被 `emcc.bat` 误调用，导致激活时报 python 相关错误或弹出商店窗口。`build-wasm.ps1` 已通过显式把 emsdk 自带 python 目录塞到 `PATH` 最前来绕过这个问题，正常情况下无需手动处理。
+
+### 3. 安装 CMake 与 Ninja
+
+`build-wasm.ps1` 用 Ninja 作为 CMake 生成器（比 Make 快很多）。两者都可一键装：
+
+```powershell
+pip install cmake ninja
+```
+
+脚本会按以下优先级自动定位：
+1. `%LOCALAPPDATA%\Python\pythoncore-<版本>-64\Scripts\` 下的 `cmake.exe` / `ninja.exe`
+2. `PATH` 中的 `cmake` / `ninja`
+
+如果已装 VS 自带 CMake 或从官网下的独立包，确保它在 `PATH` 即可，无需 pip 重复安装。
+
+> 已验证版本：CMake 4.3.x、Ninja 1.13、emcc 6.0.2。版本不必严格一致，但 emcc 6.x 与 3.x 的导出行为有差异（`_malloc`/`_free` 在 6.x 必须放进 `EXPORTED_FUNCTIONS` 而非 `EXPORTED_RUNTIME_METHODS`，脚本已适配 6.x）。
+
+### 4. 验证环境
+
+```powershell
+cd D:\Codes\mgba
+.\build-wasm.ps1
+```
+
+成功时会输出工具版本、找到 `libmgba.a`、链接出 `wasm/mgba.js` + `wasm/mgba.wasm`，最后提示自检命令。
+
+可选的运行自检（需自备 ROM，并在 `wasm/test-node.js` 里改 ROM 路径）：
+
+```powershell
+node wasm\test-node.js
+```
+
+### 5. 常见环境问题速查
+
+| 现象 | 原因 | 处理 |
+|------|------|------|
+| `emsdk activate` 报 python 错误 / 弹微软商店 | 撞上商店 python 桩 | 用 `build-wasm.ps1`（已绕过）；或手动激活后把 `D:\Codes\emsdk\python\<版本>` 加到 PATH 最前 |
+| `ninja: command not found` | 没装 Ninja | `pip install ninja` |
+| `cmake` 命令找不到 | 没装 CMake | `pip install cmake` |
+| `PATH_MAX` / `strdup` 未定义 | 缺少 GNU 宏 | 脚本已含 `-D_GNU_SOURCE -DPATH_MAX=4096`，确认未手改 CFLAGS |
+| `memory access out of bounds` / `table index out of bounds` | 桥接器与 `libmgba.a` 宏不一致，或 pthread 残留 | 确认 `-DUSE_PTHREADS=OFF`、`-DDISABLE_ANON_MMAP`，让脚本从 `flags.make` 自动读宏定义 |
+
+---
+
+## 五、如何使用
 
 ### 方式 1：浏览器
 
@@ -160,7 +228,7 @@ loop();
 
 ---
 
-## 五、重新编译
+## 六、重新编译
 
 ```powershell
 .\build-wasm.ps1
@@ -173,11 +241,11 @@ loop();
 2. 用 Ninja + CMake 交叉编译 `libmgba.a`。
 3. 用 `emcc` 把 `wasm/mgba-wasm.c` 和静态库链接成 `wasm/mgba.js` + `wasm/mgba.wasm`。
 
-> 注意：脚本默认 emsdk 路径为 `D:/Codes/emsdk`，可用 `-EmSdkDir` 覆盖。cmake/ninja 用 `pip install cmake ninja` 安装即可，脚本会自动定位。
+> 注意：脚本默认 emsdk 路径为 `D:/Codes/emsdk`，可用 `-EmSdkDir` 覆盖。cmake/ninja 用 `pip install cmake ninja` 安装即可，脚本会自动定位。默认为 `-O3` 发布构建；加 `-DebugBuild` 切换为 `-O0 -g3` + `ASSERTIONS=2` 调试构建。
 
 ---
 
-## 六、文件清单
+## 七、文件清单
 
 | 文件 | 作用 |
 |------|------|
@@ -193,20 +261,20 @@ loop();
 
 ---
 
-## 七、已知限制
+## 八、已知限制
 
 - 仅支持 GBA，不支持 GB/GBC。
 - 使用 HLE BIOS，未加载官方 BIOS。
 - 音频 API 已导出，但 HTML demo 暂未输出音频。
-- 当前为 `-O0 -g3` 调试构建，体积较大；发布时建议改为 `-O3` 并移除 `-s ASSERTIONS=2`。
+- 发布构建为 `-O3`；调试构建（`-DebugBuild`）会带 `ASSERTIONS=2` 且体积较大，仅用于排查问题。
 - 微信小程序中需确保 `WebAssembly` 可用，并将 `.wasm` 文件作为资源加载。
 
 ---
 
-## 八、后续建议
+## 九、后续建议
 
-1. **性能优化**：发布构建 `-O3` + `-flto`，可显著减小体积并提升帧率。
-2. **音频输出**：接入 `AudioContext`，从 `mgba_read_audio` 读取采样并播放。
-3. **存档持久化**：把 `savedState` 写入 `localStorage` 或小程序本地存储。
-4. **触屏按键**：在 HTML demo 中添加虚拟手柄，适配移动端/微信小程序。
-5. **BIOS 加载**：如需更精确模拟，可暴露 `mgba_load_bios` 加载官方 GBA BIOS。
+1. **音频输出**：接入 `AudioContext`，从 `mgba_read_audio` 读取采样并播放。
+2. **存档持久化**：把 `savedState` 写入 `localStorage` 或小程序本地存储。
+3. **触屏按键**：在 HTML demo 中添加虚拟手柄，适配移动端/微信小程序。
+4. **BIOS 加载**：如需更精确模拟，可暴露 `mgba_load_bios` 加载官方 GBA BIOS。
+5. **联机（SIO Link）**：基于 `mCoreSetPeripheral(core, mPERIPH_GBA_LINK_PORT, driver)` 安装自定义 `GBASIODriver`，通过 WebSocket 中继实现互联网联机；参考实现见 `src/gba/sio/lockstep.c`，但需改为异步模型（浏览器单线程不能阻塞主线程）。

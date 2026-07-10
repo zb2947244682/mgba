@@ -10,7 +10,9 @@
 
 - **Emscripten SDK**：默认路径 `D:\Codes\emsdk`（用 `emsdk install latest && emsdk activate latest` 安装）
 - **Ninja / CMake**：用 `pip install cmake ninja` 安装即可，脚本会自动定位
-- **PowerShell**（用于执行 `build-wasm.ps1`）
+- **PowerShell 7+**（用于执行 `build-wasm.ps1`）
+
+> 详细的从零搭建步骤、微软商店 python 桩踩坑处理、常见环境问题速查见 [WASM_BUILD_SUMMARY.md](WASM_BUILD_SUMMARY.md) 的"四、环境搭建"。
 
 如果你的 emsdk 路径不同，用 `.\build-wasm.ps1 -EmSdkDir <路径>` 指定。
 
