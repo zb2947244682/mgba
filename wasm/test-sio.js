@@ -34,13 +34,15 @@ createModule({ wasmBinary }).then(module => {
   onPeer(core, 1, 0x5678, 0x1234); // peer data = 0x12345678
   console.log('on_peer(NORMAL32) sent frames:', sent.length, sent[0]);
   if (sent.length !== 1) throw new Error('receiver should have sent 1 frame');
-  // 回发的是本地 my 数据(0)，lo/hi 应为 0
-  if (sent[0][2] !== 0 || sent[0][3] !== 0) throw new Error('unexpected local send');
+  // NORMAL32 接收方回声本次 peer（即时确认，避免 readLocalSend 读到上次 FinishTransfer
+  // 覆盖的旧对端值导致回声延迟一帧）。lo/hi 应等于传入的 peer。
+  if (sent[0][2] !== 0x5678 || sent[0][3] !== 0x1234) throw new Error('should echo peer');
 
   // 再模拟一次：pending 仍 0（上一次 finish 后未 start），又是接收方路径
   sent.length = 0;
   onPeer(core, 1, 0xFFFF, 0xFFFF);
-  console.log('on_peer #2 sent:', sent.length);
+  console.log('on_peer #2 sent:', sent.length, sent[0]);
+  if (sent[0][2] !== 0xFFFF || sent[0][3] !== 0xFFFF) throw new Error('should echo peer #2');
 
   detach(core);
   console.log('detach: ok');

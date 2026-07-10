@@ -403,9 +403,19 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, unsigne
         s_netDriver.pending = 0;
         finishByMode(sio, mode, peer, s_netDriver.lastSend);
     } else {
-        /* 请求：我是接收方，回发本机数据并完成 */
-        unsigned my = readLocalSend(sio, mode);
-        mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF);
+        /* 请求：我是接收方，回发并完成。
+         * NORMAL8/32 的 SIODATA 收发共用同一寄存器：FinishTransfer 写对端数据后会覆盖
+         * 本机值，而从机被动模式不主动重写 SIODATA，下次 readLocalSend 会读到上次覆盖
+         * 的旧对端值，导致回声延迟一帧、握手字节错位。故 NORMAL 直接回声本次 peer 让
+         * 确认即时。MULTI 的 SIOMLT_SEND 与 SIOMULTI0..3 独立、无覆盖，仍回发本机数据。 */
+        unsigned my;
+        if (mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32) {
+            my = peer;
+            mgba_net_send(mode, sio->siocnt, peer & 0xFFFF, (peer >> 16) & 0xFFFF);
+        } else {
+            my = readLocalSend(sio, mode);
+            mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF);
+        }
         finishByMode(sio, mode, peer, my);
     }
 }
