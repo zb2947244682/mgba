@@ -16,7 +16,7 @@ createModule({ wasmBinary }).then(module => {
 
   // __netSioSend 钩子：记录发出的帧，验证 start() 路径
   const sent = [];
-  module.__netSioSend = (mode, siocnt, lo, hi) => sent.push([mode, siocnt, lo, hi]);
+  module.__netSioSend = (mode, siocnt, lo, hi, source) => sent.push([mode, siocnt, lo, hi, source]);
 
   const core = create();
   if (!core) throw new Error('mgba_create returned null');

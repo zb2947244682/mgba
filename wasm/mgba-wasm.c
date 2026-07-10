@@ -255,10 +255,11 @@ EMSCRIPTEN_KEEPALIVE int mgba_key_l() { return GBA_KEY_L; }
 #include <mgba/internal/gba/sio.h>    /* GBASIO, GBASIO*FinishTransfer */
 #include <mgba/internal/gba/io.h>     /* GBA_REG, SIODATA* / SIOMLT_SEND */
 
-/* 前端注入的发送钩子。data_lo/data_hi 携带本机待发数据（按 mode 解析）。 */
-EM_JS(void, mgba_net_send, (int mode, int siocnt, unsigned data_lo, unsigned data_hi), {
+/* 前端注入的发送钩子。data_lo/data_hi 携带本机待发数据（按 mode 解析）。
+ * source: 0=netStart（本机主动 start 发送），1=on_peer 接收方回发（收到对端请求后回发本机数据）。 */
+EM_JS(void, mgba_net_send, (int mode, int siocnt, unsigned data_lo, unsigned data_hi, int source), {
     if (typeof Module.__netSioSend === 'function') {
-        Module.__netSioSend(mode, siocnt, data_lo, data_hi);
+        Module.__netSioSend(mode, siocnt, data_lo, data_hi, source);
     }
 });
 
@@ -363,7 +364,7 @@ static bool netStart(struct GBASIODriver* d) {
     unsigned send = readLocalSend(sio, mode);
     n->pending = 1;
     n->lastSend = send;
-    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF);
+    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: netStart */
     return false; /* 异步完成，等对端回执由 mgba_sio_on_peer 调 FinishTransfer */
 }
 
@@ -417,7 +418,7 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, unsigne
          * 本机真值。早期从机不写数据时曾用回声 peer 兜底，但那是 Si 未设的症状；现 Si=1
          * 应读本机真值（NORMAL32 全双工，双方各自发自己的数据，非回声）。 */
         unsigned my = readLocalSend(sio, mode);
-        mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF);
+        mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 接收方回发 */
         finishByMode(sio, mode, peer, my);
     }
 }
