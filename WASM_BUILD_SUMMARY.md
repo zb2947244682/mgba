@@ -32,7 +32,7 @@
 5. **Node.js 验证脚本 `wasm/test-node.js`**
    - 在不依赖浏览器的情况下验证核心创建、ROM 加载、帧运行、渲染输出、安全销毁。
 
-6. **一键编译脚本 `build-wasm.sh`**
+6. **一键编译脚本 `build-wasm.ps1`**（Windows / PowerShell，替代旧版 `build-wasm.sh`）
    - 从配置 CMake、编译静态库到链接 Wasm 桥接层，全流程自动化。
 
 ---
@@ -162,16 +162,18 @@ loop();
 
 ## 五、重新编译
 
-```bash
-bash build-wasm.sh
+```powershell
+.\build-wasm.ps1
+# 或指定 emsdk 路径：.\build-wasm.ps1 -EmSdkDir D:\Codes\emsdk
+# 调试构建：.\build-wasm.ps1 -DebugBuild
 ```
 
 脚本会：
-1. 激活 Emscripten SDK。
+1. 激活 Emscripten SDK（自动绕开 Windows 微软商店 python 桩）。
 2. 用 Ninja + CMake 交叉编译 `libmgba.a`。
 3. 用 `emcc` 把 `wasm/mgba-wasm.c` 和静态库链接成 `wasm/mgba.js` + `wasm/mgba.wasm`。
 
-> 注意：脚本里硬编码了 `D:/Codes/emsdk` 路径。如果你的 emsdk 安装路径不同，请修改 `build-wasm.sh` 顶部的路径变量。
+> 注意：脚本默认 emsdk 路径为 `D:/Codes/emsdk`，可用 `-EmSdkDir` 覆盖。cmake/ninja 用 `pip install cmake ninja` 安装即可，脚本会自动定位。
 
 ---
 
@@ -180,7 +182,7 @@ bash build-wasm.sh
 | 文件 | 作用 |
 |------|------|
 | `CMakeLists.txt` | 修改 pthread 覆盖逻辑 |
-| `build-wasm.sh` | 一键编译脚本 |
+| `build-wasm.ps1` | 一键编译脚本（Windows / PowerShell） |
 | `wasm/mgba-wasm.c` | C 桥接层 |
 | `wasm/mgba-api.ts` | TypeScript 封装 |
 | `wasm/index.html` | 浏览器演示 |

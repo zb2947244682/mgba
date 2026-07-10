@@ -8,7 +8,7 @@
 - `wasm/mgba-api.ts` — TypeScript 封装
 - `wasm/index.html` — 浏览器演示页面
 - `wasm/test-node.js` — Node.js 测试脚本
-- `build-wasm.sh` — 一键编译脚本（Git Bash / WSL）
+- `build-wasm.ps1` — 一键编译脚本（Windows / PowerShell）
 
 ## 已验证环境
 

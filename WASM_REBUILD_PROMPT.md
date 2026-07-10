@@ -8,27 +8,26 @@
 
 ## 一、环境要求
 
-- **Emscripten SDK**：默认路径 `D:\Codes\emsdk`
-- **Ninja**：默认路径 `D:\Codes\emsdk\ninja\ninja.exe`
-- **CMake**：默认路径 `D:\Codes\emsdk\cmake\4.2.0-rc3_64bit\bin\cmake.exe`
-- **Git Bash** 或 WSL（用于执行 `build-wasm.sh`）
+- **Emscripten SDK**：默认路径 `D:\Codes\emsdk`（用 `emsdk install latest && emsdk activate latest` 安装）
+- **Ninja / CMake**：用 `pip install cmake ninja` 安装即可，脚本会自动定位
+- **PowerShell**（用于执行 `build-wasm.ps1`）
 
-如果你的 emsdk 路径不同，请修改 `build-wasm.sh` 顶部的路径变量。
+如果你的 emsdk 路径不同，用 `.\build-wasm.ps1 -EmSdkDir <路径>` 指定。
 
 ---
 
 ## 二、一键编译
 
-```bash
-bash build-wasm.sh
+```powershell
+.\build-wasm.ps1
 ```
 
 脚本会自动：
-1. 激活 emsdk。
+1. 激活 emsdk（绕开 Windows 微软商店 python 桩）。
 2. 用 CMake + Ninja 交叉编译 `build-wasm/libmgba.a`（GBA-only、无 pthread、无 debugger、无 scripting）。
 3. 用 `emcc` 把 `wasm/mgba-wasm.c` 和 `libmgba.a` 链接成 `wasm/mgba.js` + `wasm/mgba.wasm`。
 
-编译完成后运行验证：
+编译完成后运行验证（需自备 ROM 路径）：
 
 ```bash
 node wasm/test-node.js
@@ -72,7 +71,7 @@ node wasm/test-node.js
 |------|------|------|
 | `memory access out of bounds` / `table index is out of bounds` | 桥接器与 libmgba.a 宏定义不一致，或 pthread/mmap 问题 | 检查 `-DENABLE_DIRECTORIES`、`-DENABLE_VFS`、`-DDISABLE_ANON_MMAP`、`-DUSE_PTHREADS=OFF` |
 | `null function or function signature mismatch` | `mCore` 虚表布局不一致 | 确保桥接器 emcc 命令的宏与 CMake 完全一致 |
-| `ninja: command not found` | Ninja 路径不在 PATH | 检查 `build-wasm.sh` 中 PATH 是否指向你的 ninja 目录 |
+| `ninja: command not found` | Ninja 未安装 | 执行 `pip install ninja` |
 | `PATH_MAX` / `strdup` 未定义 | 缺少 GNU 宏 | 加 `-D_GNU_SOURCE -DPATH_MAX=4096` |
 | 编译产物太大 | 调试构建 | 发布时把 `-O0 -g3` 换成 `-O3` |
 
@@ -96,7 +95,7 @@ node wasm/test-node.js
 
 环境信息：
 - emsdk 路径：D:\Codes\emsdk
-- 一键编译脚本：build-wasm.sh
+- 一键编译脚本：build-wasm.ps1（PowerShell）
 - 验证脚本：node wasm/test-node.js
 - 测试 ROM：D:\Media\Downloads\究极绿宝石.gba
 
@@ -114,17 +113,16 @@ node wasm/test-node.js
 
 重新编译前确认：
 
-- [ ] emsdk 已安装且路径正确
-- [ ] `build-wasm.sh` 中的路径已改成你的实际路径
-- [ ] 执行 `bash build-wasm.sh` 无报错
-- [ ] 执行 `node wasm/test-node.js` 输出 `Test passed`
+- [ ] emsdk 已安装且路径正确（默认 `D:\Codes\emsdk`）
+- [ ] `pip install cmake ninja` 已执行（脚本自动定位，无需手改路径）
+- [ ] 执行 `.\build-wasm.ps1` 无报错
 - [ ] `wasm/mgba.js` 和 `wasm/mgba.wasm` 时间戳已更新
 
 ---
 
 ## 八、发布构建建议
 
-调试构建体积大、速度慢。发布时把 `build-wasm.sh` 中的：
+调试构建体积大、速度慢。发布时把 `build-wasm.ps1` 中的（用 `-DebugBuild` 开关）：
 
 ```bash
 -s ASSERTIONS=2 \
