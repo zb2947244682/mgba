@@ -240,3 +240,159 @@ EMSCRIPTEN_KEEPALIVE int mgba_key_up() { return GBA_KEY_UP; }
 EMSCRIPTEN_KEEPALIVE int mgba_key_down() { return GBA_KEY_DOWN; }
 EMSCRIPTEN_KEEPALIVE int mgba_key_r() { return GBA_KEY_R; }
 EMSCRIPTEN_KEEPALIVE int mgba_key_l() { return GBA_KEY_L; }
+
+/* ==================== SIO 网络联机 ====================
+ * 自定义 GBASIODriver：把 SIO 传输通过 WebSocket 转发给对端浏览器。
+ * 设计：对称 request-response 握手。
+ *   - start() 读本机待发数据，通过 EM_JS 钩子发给对端，返回 false（异步完成），
+ *     核心 _startTransfer 见返回 false 即不调度 completeEvent（sio.c:143-149）。
+ *   - 对端数据到达时由 mgba_sio_on_peer 调 GBASIO*FinishTransfer 完成传输
+ *     （写 SIODATA + 清 Start + 触发 SIO 中断，sio.c:391-406）。
+ *   - pending 标志区分：发起方收到的是"回执"（直接 finish）；
+ *     接收方收到的是"请求"（回发本机数据 + finish）。
+ */
+#include <mgba/gba/interface.h>      /* GBASIODriver, mPERIPH_GBA_LINK_PORT */
+#include <mgba/internal/gba/sio.h>    /* GBASIO, GBASIO*FinishTransfer */
+#include <mgba/internal/gba/io.h>     /* GBA_REG, SIODATA* / SIOMLT_SEND */
+
+/* 前端注入的发送钩子。data_lo/data_hi 携带本机待发数据（按 mode 解析）。 */
+EM_JS(void, mgba_net_send, (int mode, int siocnt, unsigned data_lo, unsigned data_hi), {
+    if (typeof Module.__netSioSend === 'function') {
+        Module.__netSioSend(mode, siocnt, data_lo, data_hi);
+    }
+});
+
+struct GBASIONetDriver {
+    struct GBASIODriver d;
+    int connected;       /* 对端是否已连接 */
+    int playerId;        /* MULTI 本机 id（0=主机,1=从机） */
+    int pending;         /* 本机已发起 start，等待对端回执 */
+    unsigned lastSend;   /* MULTI 主机 finish 时回填 data[0] */
+};
+
+static struct GBASIONetDriver s_netDriver;
+
+static unsigned readLocalSend(struct GBASIO* sio, int mode) {
+    switch (mode) {
+    case GBA_SIO_NORMAL_8:
+        return sio->p->memory.io[GBA_REG(SIODATA8)] & 0xFF;
+    case GBA_SIO_NORMAL_32:
+        return (sio->p->memory.io[GBA_REG(SIODATA32_LO)] & 0xFFFF)
+             | ((sio->p->memory.io[GBA_REG(SIODATA32_HI)] & 0xFFFF) << 16);
+    case GBA_SIO_MULTI:
+        return sio->p->memory.io[GBA_REG(SIOMLT_SEND)] & 0xFFFF;
+    default:
+        return 0;
+    }
+}
+
+static void finishByMode(struct GBASIO* sio, int mode, unsigned peer, unsigned my) {
+    switch (mode) {
+    case GBA_SIO_NORMAL_8:
+        GBASIONormal8FinishTransfer(sio, (uint8_t)(peer & 0xFF), 0);
+        break;
+    case GBA_SIO_NORMAL_32:
+        GBASIONormal32FinishTransfer(sio, peer, 0);
+        break;
+    case GBA_SIO_MULTI: {
+        /* data[0]=主机发送, data[1]=从机发送，2P 其余填 0xFFFF */
+        uint16_t data[4];
+        if (s_netDriver.playerId == 0) {
+            data[0] = (uint16_t)(my & 0xFFFF);
+            data[1] = (uint16_t)(peer & 0xFFFF);
+        } else {
+            data[0] = (uint16_t)(peer & 0xFFFF);
+            data[1] = (uint16_t)(my & 0xFFFF);
+        }
+        data[2] = 0xFFFF;
+        data[3] = 0xFFFF;
+        GBASIOMultiplayerFinishTransfer(sio, data, 0);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static bool netInit(struct GBASIODriver* d) { (void)d; return true; }
+static void netDeinit(struct GBASIODriver* d) { (void)d; }
+static void netReset(struct GBASIODriver* d) {
+    struct GBASIONetDriver* n = (struct GBASIONetDriver*)d;
+    n->pending = 0;
+    n->lastSend = 0;
+}
+static uint32_t netId(const struct GBASIODriver* d) { (void)d; return 0x574F524E; /* 'NETW' */ }
+static bool netLoadState(struct GBASIODriver* d, const void* s, size_t sz) { (void)d; (void)s; (void)sz; return false; }
+static void netSaveState(struct GBASIODriver* d, void** s, size_t* sz) { (void)d; if (s) *s = NULL; if (sz) *sz = 0; }
+static void netSetMode(struct GBASIODriver* d, enum GBASIOMode mode) { (void)d; (void)mode; }
+static bool netHandlesMode(struct GBASIODriver* d, enum GBASIOMode mode) {
+    (void)d;
+    return mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32 || mode == GBA_SIO_MULTI;
+}
+static int netConnected(struct GBASIODriver* d) {
+    return ((struct GBASIONetDriver*)d)->connected ? 1 : 0;
+}
+static int netDeviceId(struct GBASIODriver* d) {
+    return ((struct GBASIONetDriver*)d)->playerId;
+}
+static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) { (void)d; return v; }
+static uint16_t netWriteRCNT(struct GBASIODriver* d, uint16_t v) { (void)d; return v; }
+
+static bool netStart(struct GBASIODriver* d) {
+    struct GBASIONetDriver* n = (struct GBASIONetDriver*)d;
+    struct GBASIO* sio = d->p;
+    int mode = (int)sio->mode;
+    unsigned send = readLocalSend(sio, mode);
+    n->pending = 1;
+    n->lastSend = send;
+    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF);
+    return false; /* 异步完成，等对端回执由 mgba_sio_on_peer 调 FinishTransfer */
+}
+
+EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
+    if (!core || !core->board) return 0;
+    struct GBASIODriver* d = &s_netDriver.d;
+    d->init = netInit; d->deinit = netDeinit; d->reset = netReset;
+    d->driverId = netId; d->loadState = netLoadState; d->saveState = netSaveState;
+    d->setMode = netSetMode; d->handlesMode = netHandlesMode;
+    d->connectedDevices = netConnected; d->deviceId = netDeviceId;
+    d->writeSIOCNT = netWriteSIOCNT; d->writeRCNT = netWriteRCNT;
+    d->start = netStart;
+    /* 异步路径不经过 _sioFinish，finish* 回调不会被核心调用，置 NULL */
+    d->finishMultiplayer = NULL; d->finishNormal8 = NULL; d->finishNormal32 = NULL;
+    s_netDriver.connected = 0; s_netDriver.playerId = 0;
+    s_netDriver.pending = 0; s_netDriver.lastSend = 0;
+    core->setPeripheral(core, mPERIPH_GBA_LINK_PORT, d);
+    return 1;
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, int playerId) {
+    (void)core;
+    s_netDriver.connected = connected ? 1 : 0;
+    s_netDriver.playerId = playerId;
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, unsigned data_lo, unsigned data_hi) {
+    if (!core || !core->board) return;
+    struct GBA* gba = core->board;
+    struct GBASIO* sio = &gba->sio;
+    if ((struct GBASIODriver*)&s_netDriver != sio->driver) return; /* 未 attach */
+    unsigned peer = (data_lo & 0xFFFF) | ((data_hi & 0xFFFF) << 16);
+    if (s_netDriver.pending) {
+        /* 回执：我是发起方，完成传输 */
+        s_netDriver.pending = 0;
+        finishByMode(sio, mode, peer, s_netDriver.lastSend);
+    } else {
+        /* 请求：我是接收方，回发本机数据并完成 */
+        unsigned my = readLocalSend(sio, mode);
+        mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF);
+        finishByMode(sio, mode, peer, my);
+    }
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_detach(struct mCore* core) {
+    if (!core) return;
+    core->setPeripheral(core, mPERIPH_GBA_LINK_PORT, NULL);
+    s_netDriver.connected = 0;
+    s_netDriver.pending = 0;
+}
