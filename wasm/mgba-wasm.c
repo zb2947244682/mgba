@@ -339,11 +339,18 @@ static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
     /* MULTI 就绪位：游戏轮询 SIOCNT.Ready 判断所有玩家是否进入同一 MULTI mode，
      * Ready=0 时游戏不会 start 传输（实测：日志只有 attach 无 sio send）。
      * 参照 lockstep _setReady（sio/lockstep.c:856-860）：双方 attach 且 MULTI 时 ready=1。
-     * v 会被 sio.c:238 存入 sio->siocnt，故 Ready 设在 v；SD 位在 RCNT，直接设 sio->rcnt。 */
+     * v 会被 sio.c:238 存入 sio->siocnt，故 Ready 设在 v；SD 位在 RCNT，直接设 sio->rcnt。
+     *
+     * NORMAL8/32 的 Si 位（bit 2，sio.h:42）：游戏读它判断对端 SO 是否为高 = 对端是否在线/就绪。
+     * 虚拟驱动在 sio.c:228 调 GBASIONormalFillSi 设 Si=1，但我们 handled=true 会跳过那行，
+     * 导致 Si=0，游戏判定无对端、从机不写自己的握手数据 → 握手失败。故此处同样设 Si=1。 */
     struct GBASIO* sio = d->p;
-    if (sio->mode == GBA_SIO_MULTI && s_netDriver.connected) {
+    if (!s_netDriver.connected) return v;
+    if (sio->mode == GBA_SIO_MULTI) {
         v = GBASIOMultiplayerSetReady(v, 1);
         sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+    } else if (sio->mode == GBA_SIO_NORMAL_8 || sio->mode == GBA_SIO_NORMAL_32) {
+        v = GBASIONormalFillSi(v);
     }
     return v;
 }
@@ -380,14 +387,16 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
 EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, int playerId) {
     s_netDriver.connected = connected ? 1 : 0;
     s_netDriver.playerId = playerId;
-    /* attach 后若游戏已在 MULTI mode，主动设就绪位（兜底：游戏可能不再 writeSIOCNT）。
-     * 与 netWriteSIOCNT 同逻辑，参照 lockstep _setReady。 */
+    /* attach 后若游戏已在 MULTI/NORMAL mode，主动设就绪位（兜底：游戏可能不再 writeSIOCNT）。
+     * 与 netWriteSIOCNT 同逻辑。NORMAL 设 Si 位让游戏判定对端在线、从机才会写握手数据。 */
     if (connected && core && core->board) {
         struct GBA* gba = core->board;
         struct GBASIO* sio = &gba->sio;
         if (sio->mode == GBA_SIO_MULTI) {
             sio->siocnt = GBASIOMultiplayerSetReady(sio->siocnt, 1);
             sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+        } else if (sio->mode == GBA_SIO_NORMAL_8 || sio->mode == GBA_SIO_NORMAL_32) {
+            sio->siocnt = GBASIONormalFillSi(sio->siocnt);
         }
     }
 }
@@ -403,19 +412,12 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, unsigne
         s_netDriver.pending = 0;
         finishByMode(sio, mode, peer, s_netDriver.lastSend);
     } else {
-        /* 请求：我是接收方，回发并完成。
-         * NORMAL8/32 的 SIODATA 收发共用同一寄存器：FinishTransfer 写对端数据后会覆盖
-         * 本机值，而从机被动模式不主动重写 SIODATA，下次 readLocalSend 会读到上次覆盖
-         * 的旧对端值，导致回声延迟一帧、握手字节错位。故 NORMAL 直接回声本次 peer 让
-         * 确认即时。MULTI 的 SIOMLT_SEND 与 SIOMULTI0..3 独立、无覆盖，仍回发本机数据。 */
-        unsigned my;
-        if (mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32) {
-            my = peer;
-            mgba_net_send(mode, sio->siocnt, peer & 0xFFFF, (peer >> 16) & 0xFFFF);
-        } else {
-            my = readLocalSend(sio, mode);
-            mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF);
-        }
+        /* 请求：我是接收方，回发本机 SIODATA 并完成。设 Si 位后游戏判定对端在线、
+         * 从机会主动写自己的握手数据到 SIODATA32/SIOMLT_SEND，readLocalSend 读到的就是
+         * 本机真值。早期从机不写数据时曾用回声 peer 兜底，但那是 Si 未设的症状；现 Si=1
+         * 应读本机真值（NORMAL32 全双工，双方各自发自己的数据，非回声）。 */
+        unsigned my = readLocalSend(sio, mode);
+        mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF);
         finishByMode(sio, mode, peer, my);
     }
 }
