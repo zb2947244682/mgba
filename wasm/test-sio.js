@@ -27,23 +27,18 @@ createModule({ wasmBinary }).then(module => {
   setPeer(core, 1, 0); // 对端已连接，本机=主机(id=0)
   console.log('set_peer: ok');
 
-  // 模拟一次 NORMAL32(mode=1) 对端请求：
-  // pending=0 -> 走接收方路径：读本地 SIODATA32 -> __netSioSend 回发 -> FinishTransfer
-  // 核心未 reset/loadRom，SIODATA 为 0；FinishTransfer 会写寄存器 + GBARaiseIRQ。
+  // 模拟 NORMAL32(mode=1) 双向异步模型：
+  //   source=0（对端查询）且本机非 pending → 纯接收方，回发本机数据(source=1)响应 → sent 增 1。
+  //   source=1（对端响应）→ 不回发（防死循环）→ sent 不增。
   reset(core);
-  onPeer(core, 1, 0x5678, 0x1234); // peer data = 0x12345678
-  console.log('on_peer(NORMAL32) sent frames:', sent.length, sent[0]);
-  if (sent.length !== 1) throw new Error('receiver should have sent 1 frame');
-  // 接收方回发本机 SIODATA（核心未 loadRom，SIODATA 为 0）。
-  if (sent[0][2] !== 0 || sent[0][3] !== 0) throw new Error('should send local 0');
+  onPeer(core, 1, 0, 0x5678, 0x1234); // source=0, pending=0 → 应回发
+  console.log('on_peer(NORMAL32, src=0, no pending) sent frames:', sent.length);
+  if (sent.length !== 1) throw new Error('NORMAL on_peer src=0 receiver should echo once');
 
-  // 再模拟一次：pending 仍 0（上一次 finish 后未 start），又是接收方路径。
-  // 此时 SIODATA32 仍是上次 FinishTransfer 写入的 peer（0x5678/0x1234），因测试无游戏
-  // 逻辑主动写 SIODATA；真实游戏设 Si 后会主动写自己的握手数据覆盖它。
   sent.length = 0;
-  onPeer(core, 1, 0xFFFF, 0xFFFF);
-  console.log('on_peer #2 sent:', sent.length, sent[0]);
-  if (sent[0][2] !== 0x5678 || sent[0][3] !== 0x1234) throw new Error('should read last peer');
+  onPeer(core, 1, 1, 0xFFFF, 0xFFFF); // source=1 响应 → 不回发
+  console.log('on_peer(NORMAL32, src=1) sent:', sent.length);
+  if (sent.length !== 0) throw new Error('NORMAL on_peer src=1 response must not echo');
 
   detach(core);
   console.log('detach: ok');

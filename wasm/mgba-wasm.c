@@ -267,7 +267,7 @@ struct GBASIONetDriver {
     struct GBASIODriver d;
     int connected;       /* 对端是否已连接 */
     int playerId;        /* MULTI 本机 id（0=主机,1=从机） */
-    int pending;         /* 本机已发起 start，等待对端回执 */
+    int pending;         /* 本机已发起 start（NORMAL8/32/MULTI），等待对端响应才完成 */
     unsigned lastSend;   /* MULTI 主机 finish 时回填 data[0] */
 };
 
@@ -357,15 +357,22 @@ static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
 }
 static uint16_t netWriteRCNT(struct GBASIODriver* d, uint16_t v) { (void)d; return v; }
 
+/* NORMAL8/32/MULTI 均异步：netStart 发本机数据(source=0)并置 pending，return false 不调度
+ * completeEvent。本机传输在对端数据到达（on_peer）时由 finishByMode 完成 + IRQ。
+ * 关键：这是双向模型——发起方必须收到对端响应才算完成（无线接收器协议要求双向数据，
+ * 不能像 mGBA lockstep 那样主机返回 0xFFFFFFFF 单向）。游戏若 HALT 等 SIO IRQ，则
+ * 异步等待期间无仿真推进、无超时；on_peer 到达即 IRQ 唤醒。 */
 static bool netStart(struct GBASIODriver* d) {
     struct GBASIONetDriver* n = (struct GBASIONetDriver*)d;
     struct GBASIO* sio = d->p;
     int mode = (int)sio->mode;
     unsigned send = readLocalSend(sio, mode);
+    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: 本机查询 */
     n->pending = 1;
-    n->lastSend = send;
-    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: netStart */
-    return false; /* 异步完成，等对端回执由 mgba_sio_on_peer 调 FinishTransfer */
+    if (mode == GBA_SIO_MULTI) {
+        n->lastSend = send;
+    }
+    return false;
 }
 
 EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
@@ -377,7 +384,7 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
     d->connectedDevices = netConnected; d->deviceId = netDeviceId;
     d->writeSIOCNT = netWriteSIOCNT; d->writeRCNT = netWriteRCNT;
     d->start = netStart;
-    /* 异步路径不经过 _sioFinish，finish* 回调不会被核心调用，置 NULL */
+    /* NORMAL8/32/MULTI 全异步：完成走 on_peer 的 finishByMode，核心 _sioFinish 不参与，故 finish* 全 NULL。 */
     d->finishMultiplayer = NULL; d->finishNormal8 = NULL; d->finishNormal32 = NULL;
     s_netDriver.connected = 0; s_netDriver.playerId = 0;
     s_netDriver.pending = 0; s_netDriver.lastSend = 0;
@@ -402,21 +409,45 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, i
     }
 }
 
-EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, unsigned data_lo, unsigned data_hi) {
+EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int source, unsigned data_lo, unsigned data_hi) {
     if (!core || !core->board) return;
     struct GBA* gba = core->board;
     struct GBASIO* sio = &gba->sio;
     if ((struct GBASIODriver*)&s_netDriver != sio->driver) return; /* 未 attach */
     unsigned peer = (data_lo & 0xFFFF) | ((data_hi & 0xFFFF) << 16);
+
+    if (mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32) {
+        /* 双向异步 + source 防死循环。无线接收器协议是双向的（主机须收到从机响应），
+         * 不能照搬 mGBA lockstep（主机 finishNormal32 返回 0xFFFFFFFF 单向，主机永不拿从机数据）。
+         *
+         * 模型：发起方 netStart 发 source=0 查询、置 pending、return false 等 on_peer 完成。
+         *   接收方 on_peer 收 source=0：先读 my（finishByMode 会覆盖 SIODATA），再 finishByMode
+         *     写对端数据 + IRQ（本机处理对端查询），最后回发 my（source=1 响应）。
+         *   发起方 on_peer 收 source=1：finishByMode 写对端响应 + IRQ，清 pending，不回发。
+         *   全双工（两端同时 start，都 pending）：各自收 source=0 → finishByMode + 清 pending，
+         *     不回发；两端都用对端查询数据完成，无循环（beacon 型握手走此路径）。
+         *   source=1 永不回发 → 重复/迟到响应不会触发再回发，杜绝死循环。 */
+        int willEcho = (source == 0 && !s_netDriver.pending);
+        unsigned my = willEcho ? readLocalSend(sio, mode) : 0; /* finishByMode 会覆盖 SIODATA，须先读 */
+        finishByMode(sio, mode, peer, 0); /* 写对端数据到 SIODATA + IRQ */
+        if (source == 0) {
+            if (s_netDriver.pending) {
+                s_netDriver.pending = 0; /* 全双工：本机也在等，用此查询完成 */
+            } else {
+                mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 回发本机数据 */
+            }
+        } else if (s_netDriver.pending) {
+            s_netDriver.pending = 0; /* 我的查询有响应了 */
+        }
+        return;
+    }
+
+    /* MULTI：只主机 start（sio.c:194），从机 on_peer 回发本机 SIOMLT_SEND 给主机。
+     * pending 区分主机 on_peer（收到从机回执，完成）与从机 on_peer（收到主机请求，回发+完成）。 */
     if (s_netDriver.pending) {
-        /* 回执：我是发起方，完成传输 */
         s_netDriver.pending = 0;
         finishByMode(sio, mode, peer, s_netDriver.lastSend);
     } else {
-        /* 请求：我是接收方，回发本机 SIODATA 并完成。设 Si 位后游戏判定对端在线、
-         * 从机会主动写自己的握手数据到 SIODATA32/SIOMLT_SEND，readLocalSend 读到的就是
-         * 本机真值。早期从机不写数据时曾用回声 peer 兜底，但那是 Si 未设的症状；现 Si=1
-         * 应读本机真值（NORMAL32 全双工，双方各自发自己的数据，非回声）。 */
         unsigned my = readLocalSend(sio, mode);
         mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 接收方回发 */
         finishByMode(sio, mode, peer, my);
