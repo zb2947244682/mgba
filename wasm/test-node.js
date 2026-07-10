@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const createModule = require('./mgba.js');
 
-const ROM_PATH = 'D:/Media/Downloads/究极绿宝石.gba';
+const ROM_PATH = process.env.ROM_PATH || 'D:/Media/Downloads/究极绿宝石.gba';
 
 createModule().then(module => {
   const cwrap = module.cwrap;
