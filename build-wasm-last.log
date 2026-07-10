@@ -1,0 +1,32 @@
+[build-wasm] 激活 emsdk: D:\Codes\emsdk
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += D:\Codes\emsdk
+PATH += D:\Codes\emsdk\upstream\emscripten
+
+Setting environment variables:
+PATH = D:\Codes\emsdk;D:\Codes\emsdk\upstream\emscripten;C:\Program Files\PowerShell\7;c:\Users\Jimmy\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\Jimmy\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Bandizip\;C:\Program Files\PowerShell\7\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\Jimmy\.local\bin;C:\Program Files (x86)\NetSarang\Xshell 8\;E:\EXE;E:\FOL\FFMPEG\bin;C:\Program Files\GitHub CLI\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;C:\Users\Jimmy\.kimi-code\bin;C:\Users\Jimmy\.cargo\bin;C:\Users\Jimmy\AppData\Local\Microsoft\WindowsApps;C:\Users\Jimmy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jimmy\AppData\Local\Python\bin;C:\Users\Jimmy\.dotnet\tools;C:\Users\Jimmy\AppData\Local\Programs\Ollama;C:\Users\Jimmy\AppData\Local\PowerToys\DSCModules\;C:\Users\Jimmy\AppData\Roaming\npm
+EMSDK_NODE = D:\Codes\emsdk\node\22.16.0_64bit\bin\node.exe
+EMSDK_PYTHON = D:\Codes\emsdk\python\3.13.3_64bit\python.exe
+[build-wasm] 工具版本：
+  cmake : cmake version 4.3.4
+  ninja : 1.13.0.git.kitware.jobserver-pipe-1
+  emcc  : emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.2 (7a2d97d627ff4945eae28847ce0387ac52b92c09)
+  build : D:\Codes\mgba\build-wasm
+  out   : D:\Codes\mgba\wasm
+[build-wasm] 配置 CMake（LIBMGBA_ONLY + 仅 GBA 核心）...
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/Codes/mgba/build-wasm
+[build-wasm] 编译 mGBA 核心静态库（libmgba.a）...
+[1/3] C:\Windows\system32\cmd.exe /C "cd /D D:\Codes\mgba && C:\Users\Jimmy\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\cmake\data\bin\cmake.exe -DBINARY_NAME=mgba -DCONFIG_FILE=D:/Codes/mgba/src/core/version.c.in -DOUT_FILE=D:/Codes/mgba/build-wasm/version.c -P D:/Codes/mgba/version.cmake"
+[2/3] Building C object CMakeFiles/mgba.dir/version.c.o
+[3/3] Linking C static library libmgba.a
+[build-wasm] 找到静态库：D:\Codes\mgba\build-wasm\libmgba.a
+[build-wasm] 未读到 flags.make 的 C_DEFINES，回落到已知宏集合
+[build-wasm] 链接 wasm -> D:\Codes\mgba\wasm\mgba.js (+ mgba.wasm)
+[build-wasm] 完成。产物：
+  mgba.js            71,938 bytes  D:\Codes\mgba\wasm\mgba.js
+  mgba.wasm         637,996 bytes  D:\Codes\mgba\wasm\mgba.wasm
+[build-wasm] 下一步自检：node wasm\test-node.js（需自备 ROM 路径）
