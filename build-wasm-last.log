@@ -28,5 +28,5 @@ EMSDK_PYTHON = D:\Codes\emsdk\python\3.13.3_64bit\python.exe
 [build-wasm] 链接 wasm -> D:\Codes\mgba\wasm\mgba.js (+ mgba.wasm)
 [build-wasm] 完成。产物：
   mgba.js            71,938 bytes  D:\Codes\mgba\wasm\mgba.js
-  mgba.wasm         637,996 bytes  D:\Codes\mgba\wasm\mgba.wasm
+  mgba.wasm         638,123 bytes  D:\Codes\mgba\wasm\mgba.wasm
 [build-wasm] 下一步自检：node wasm\test-node.js（需自备 ROM 路径）

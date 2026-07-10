@@ -335,7 +335,18 @@ static int netConnected(struct GBASIODriver* d) {
 static int netDeviceId(struct GBASIODriver* d) {
     return ((struct GBASIONetDriver*)d)->playerId;
 }
-static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) { (void)d; return v; }
+static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
+    /* MULTI 就绪位：游戏轮询 SIOCNT.Ready 判断所有玩家是否进入同一 MULTI mode，
+     * Ready=0 时游戏不会 start 传输（实测：日志只有 attach 无 sio send）。
+     * 参照 lockstep _setReady（sio/lockstep.c:856-860）：双方 attach 且 MULTI 时 ready=1。
+     * v 会被 sio.c:238 存入 sio->siocnt，故 Ready 设在 v；SD 位在 RCNT，直接设 sio->rcnt。 */
+    struct GBASIO* sio = d->p;
+    if (sio->mode == GBA_SIO_MULTI && s_netDriver.connected) {
+        v = GBASIOMultiplayerSetReady(v, 1);
+        sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+    }
+    return v;
+}
 static uint16_t netWriteRCNT(struct GBASIODriver* d, uint16_t v) { (void)d; return v; }
 
 static bool netStart(struct GBASIODriver* d) {
@@ -367,9 +378,18 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
 }
 
 EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, int playerId) {
-    (void)core;
     s_netDriver.connected = connected ? 1 : 0;
     s_netDriver.playerId = playerId;
+    /* attach 后若游戏已在 MULTI mode，主动设就绪位（兜底：游戏可能不再 writeSIOCNT）。
+     * 与 netWriteSIOCNT 同逻辑，参照 lockstep _setReady。 */
+    if (connected && core && core->board) {
+        struct GBA* gba = core->board;
+        struct GBASIO* sio = &gba->sio;
+        if (sio->mode == GBA_SIO_MULTI) {
+            sio->siocnt = GBASIOMultiplayerSetReady(sio->siocnt, 1);
+            sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+        }
+    }
 }
 
 EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, unsigned data_lo, unsigned data_hi) {
