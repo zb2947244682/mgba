@@ -315,6 +315,16 @@ static void finishByMode(struct GBASIO* sio, int mode, unsigned peer, unsigned m
     }
 }
 
+/* SIO mode 枚举名（与 sio.h GBASIOMode 一致：0=NORMAL8 1=NORMAL32 2=MULTI 3=UART），便于 printf 可读。 */
+static const char* sioModeStr(int m) {
+    switch (m) {
+        case 0: return "NORMAL8";
+        case 1: return "NORMAL32";
+        case 2: return "MULTI";
+        case 3: return "UART";
+        default: return "?";
+    }
+}
 static bool netInit(struct GBASIODriver* d) { (void)d; return true; }
 static void netDeinit(struct GBASIODriver* d) { (void)d; }
 static void netReset(struct GBASIODriver* d) {
@@ -325,10 +335,23 @@ static void netReset(struct GBASIODriver* d) {
 static uint32_t netId(const struct GBASIODriver* d) { (void)d; return 0x574F524E; /* 'NETW' */ }
 static bool netLoadState(struct GBASIODriver* d, const void* s, size_t sz) { (void)d; (void)s; (void)sz; return false; }
 static void netSaveState(struct GBASIODriver* d, void** s, size_t* sz) { (void)d; if (s) *s = NULL; if (sz) *sz = 0; }
-static void netSetMode(struct GBASIODriver* d, enum GBASIOMode mode) { (void)d; (void)mode; }
+static void netSetMode(struct GBASIODriver* d, enum GBASIOMode mode) {
+    (void)d;
+    printf("[sio] setMode mode=%d(%s)\n", (int)mode, sioModeStr((int)mode));
+    fflush(stdout);
+}
 static bool netHandlesMode(struct GBASIODriver* d, enum GBASIOMode mode) {
     (void)d;
-    return mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32 || mode == GBA_SIO_MULTI;
+    bool r = mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32 || mode == GBA_SIO_MULTI;
+    /* 去重：mGBA 可能逐帧询问，只在 mode 变化时打印。返回值不变所以去重安全。 */
+    static int s_lastHandled = -1;
+    int m = (int)mode;
+    if (m != s_lastHandled) {
+        printf("[sio] handlesMode mode=%d(%s) → %d\n", m, sioModeStr(m), r ? 1 : 0);
+        fflush(stdout);
+        s_lastHandled = m;
+    }
+    return r;
 }
 static int netConnected(struct GBASIODriver* d) {
     return ((struct GBASIONetDriver*)d)->connected ? 1 : 0;
@@ -346,6 +369,16 @@ static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
      * 虚拟驱动在 sio.c:228 调 GBASIONormalFillSi 设 Si=1，但我们 handled=true 会跳过那行，
      * 导致 Si=0，游戏判定无对端、从机不写自己的握手数据 → 握手失败。故此处同样设 Si=1。 */
     struct GBASIO* sio = d->p;
+    /* 去重：游戏轮询 SIOCNT 时可能逐帧写，只在值变化时打印，避免刷屏。
+     * 关键看 mode 落点 + Start 位(bit7) + Ready 位 + connected/pending 状态。 */
+    static uint16_t s_lastSiocnt = 0xFFFF;
+    if (v != s_lastSiocnt) {
+        printf("[sio] writeSIOCNT v=0x%04X mode=%d(%s) connected=%d pending=%d\n",
+               (unsigned)v & 0xFFFF, (int)sio->mode, sioModeStr((int)sio->mode),
+               s_netDriver.connected, s_netDriver.pending);
+        fflush(stdout);
+        s_lastSiocnt = v;
+    }
     if (!s_netDriver.connected) return v;
     if (sio->mode == GBA_SIO_MULTI) {
         v = GBASIOMultiplayerSetReady(v, 1);

@@ -1,6 +1,6 @@
 # ninja log v7
-5	182	8053894607825969	CMakeFiles/mgba-version-info	f51a4081d428d5de
-5	182	8053894607825969	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f51a4081d428d5de
+7	236	8062302309184146	CMakeFiles/mgba-version-info	f75d8e711ed3b360
+7	236	8062302309184146	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f75d8e711ed3b360
 192	523	8053705412574076	CMakeFiles/mgba.dir/src/core/lockstep.c.o	c9f5a324b0f3fb92
 202	557	8053705412675972	CMakeFiles/mgba.dir/src/core/sync.c.o	276c01d8fa651ba
 188	570	8053705412536305	CMakeFiles/mgba.dir/src/core/directories.c.o	49cd5d3d4c55abf2
@@ -84,7 +84,7 @@
 2389	2741	8053705434537912	CMakeFiles/mgba.dir/src/util/patch-ips.c.o	2ab06e26a00767ed
 2409	2745	8053705434743652	CMakeFiles/mgba.dir/src/util/ring-fifo.c.o	549fd20dab8f3279
 2391	2752	8053705434567907	CMakeFiles/mgba.dir/src/util/patch-ups.c.o	75407426f4e38e7f
-180	337	8053871962910823	CMakeFiles/mgba.dir/version.c.o	ef1f00e7d620fa62
+236	416	8062302311467873	CMakeFiles/mgba.dir/version.c.o	ef1f00e7d620fa62
 2420	2789	8053705434853669	CMakeFiles/mgba.dir/src/util/sfo.c.o	57fc7920e96a1970
 2426	2794	8053705434913654	CMakeFiles/mgba.dir/src/util/text-codec.c.o	374d16596286dd76
 2386	2799	8053705434507911	CMakeFiles/mgba.dir/src/util/patch-fast.c.o	5a3d93d5fe362d3d
@@ -106,8 +106,8 @@
 2742	3157	8053705438066339	CMakeFiles/mgba.dir/src/gba/extra/proxy.c.o	fde77b9386599a8a
 1252	3168	8053705423155012	CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o	6a9b5e6768ca08eb
 2640	3183	8053705437050043	CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o	9fe97fb7277deb08
-337	539	8053871964482257	libmgba.a	2bf5e22883676ae5
-7	236	8062302309184146	CMakeFiles/mgba-version-info	f75d8e711ed3b360
-7	236	8062302309184146	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f75d8e711ed3b360
-236	416	8062302311467873	CMakeFiles/mgba.dir/version.c.o	ef1f00e7d620fa62
 416	722	8062302313258073	libmgba.a	83ca84bc5b259fc3
+7	234	8062380522526660	CMakeFiles/mgba-version-info	f75d8e711ed3b360
+7	234	8062380522526660	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f75d8e711ed3b360
+234	394	8062380524790295	CMakeFiles/mgba.dir/version.c.o	ef1f00e7d620fa62
+395	615	8062380526403641	libmgba.a	83ca84bc5b259fc3
