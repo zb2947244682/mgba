@@ -380,6 +380,7 @@ static int netConnected(struct GBASIODriver* d) {
 static int netDeviceId(struct GBASIODriver* d) {
     return ((struct GBASIONetDriver*)d)->playerId;
 }
+static bool netStart(struct GBASIODriver* d); /* 前向声明：netWriteSIOCNT MULTI 兜底触发需调 */
 static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
     /* MULTI 就绪位：游戏轮询 SIOCNT.Ready 判断所有玩家是否进入同一 MULTI mode，
      * Ready=0 时游戏不会 start 传输（实测：日志只有 attach 无 sio send）。
@@ -404,6 +405,14 @@ static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
     if (sio->mode == GBA_SIO_MULTI) {
         v = GBASIOMultiplayerSetReady(v, 1);
         sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+        /* 兜底触发 MULTI 传输：绿宝石 MULTI mode 的 host 不写 SIOCNT Busy bit
+         *（mGBA sio.c:193 要求 Busy 才 _startTransfer），导致无 MULTI 传输、双方死锁
+         *（游戏轮询 SIOMULTI 等对端数据，driver 等游戏写 Busy）。driver 在 host 写
+         * SIOCNT 且空闲时主动触发一次 netStart（模仿 host 写 Busy），pending=0 防重复，
+         * on_peer 收到从机回执清 pending 后，下次 writeSIOCNT 再触发。从机被动，不触发。 */
+        if (s_netDriver.playerId == 0 && !s_netDriver.pending) {
+            netStart(d);
+        }
     } else if (sio->mode == GBA_SIO_NORMAL_8 || sio->mode == GBA_SIO_NORMAL_32) {
         v = GBASIONormalFillSi(v);
     }
