@@ -277,9 +277,21 @@ static unsigned readLocalSend(struct GBASIO* sio, int mode) {
     switch (mode) {
     case GBA_SIO_NORMAL_8:
         return sio->p->memory.io[GBA_REG(SIODATA8)] & 0xFF;
-    case GBA_SIO_NORMAL_32:
-        return (sio->p->memory.io[GBA_REG(SIODATA32_LO)] & 0xFFFF)
-             | ((sio->p->memory.io[GBA_REG(SIODATA32_HI)] & 0xFFFF) << 16);
+    case GBA_SIO_NORMAL_32: {
+        /* 诊断：打印实际从 memory.io 读到的 LO/HI，去重避免逐帧刷屏。
+         * 用于定位"游戏写 SIODATA32_HI=0x0000 但 send hi=0xFFFF"的矛盾——
+         * 若此处读到 0x0000 而 sio send 仍 0xFFFF，说明传参错；
+         * 若此处读到 0xFFFF，说明 memory.io 在 readLocalSend 时被 finishByMode 覆盖或游戏写未生效。 */
+        unsigned lo = sio->p->memory.io[GBA_REG(SIODATA32_LO)] & 0xFFFF;
+        unsigned hi = sio->p->memory.io[GBA_REG(SIODATA32_HI)] & 0xFFFF;
+        static unsigned s_lo = 0xFFFF, s_hi = 0xFFFF;
+        if (lo != s_lo || hi != s_hi) {
+            printf("[sio] readLocalSend N32 LO=0x%04X HI=0x%04X\n", lo, hi);
+            fflush(stdout);
+            s_lo = lo; s_hi = hi;
+        }
+        return lo | (hi << 16);
+    }
     case GBA_SIO_MULTI:
         return sio->p->memory.io[GBA_REG(SIOMLT_SEND)] & 0xFFFF;
     default:
@@ -402,8 +414,8 @@ static bool netStart(struct GBASIODriver* d) {
     unsigned send = readLocalSend(sio, mode);
     /* 诊断：mode: 0=NORMAL8 1=NORMAL32 2=MULTI 3=UART。playerId: 0=主机 1=从机。
      * 若 netStart 从不触发，说明游戏未进入 SIO 传输（mode/Ready/Si 位未就绪）。 */
-    printf("[sio] netStart mode=%d player=%d pending=%d connected=%d siocnt=0x%04X send=0x%04X\n",
-           mode, n->playerId, n->pending, n->connected, (unsigned)sio->siocnt & 0xFFFF, send & 0xFFFF);
+    printf("[sio] netStart mode=%d player=%d pending=%d connected=%d siocnt=0x%04X send=0x%08X\n",
+           mode, n->playerId, n->pending, n->connected, (unsigned)sio->siocnt & 0xFFFF, (unsigned)send);
     fflush(stdout);
     mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: 本机查询 */
     n->pending = 1;
