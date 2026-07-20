@@ -1,6 +1,6 @@
 # ninja log v7
-5	195	8053885085818961	CMakeFiles/mgba-version-info	f51a4081d428d5de
-5	195	8053885085818961	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f51a4081d428d5de
+5	182	8053894607825969	CMakeFiles/mgba-version-info	f51a4081d428d5de
+5	182	8053894607825969	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f51a4081d428d5de
 192	523	8053705412574076	CMakeFiles/mgba.dir/src/core/lockstep.c.o	c9f5a324b0f3fb92
 202	557	8053705412675972	CMakeFiles/mgba.dir/src/core/sync.c.o	276c01d8fa651ba
 188	570	8053705412536305	CMakeFiles/mgba.dir/src/core/directories.c.o	49cd5d3d4c55abf2
@@ -107,5 +107,7 @@
 1252	3168	8053705423155012	CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o	6a9b5e6768ca08eb
 2640	3183	8053705437050043	CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o	9fe97fb7277deb08
 337	539	8053871964482257	libmgba.a	2bf5e22883676ae5
-5	182	8053894607825969	CMakeFiles/mgba-version-info	f51a4081d428d5de
-5	182	8053894607825969	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f51a4081d428d5de
+7	236	8062302309184146	CMakeFiles/mgba-version-info	f75d8e711ed3b360
+7	236	8062302309184146	D:/Codes/mgba/build-wasm/CMakeFiles/mgba-version-info	f75d8e711ed3b360
+236	416	8062302311467873	CMakeFiles/mgba.dir/version.c.o	ef1f00e7d620fa62
+416	722	8062302313258073	libmgba.a	83ca84bc5b259fc3

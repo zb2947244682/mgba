@@ -367,6 +367,11 @@ static bool netStart(struct GBASIODriver* d) {
     struct GBASIO* sio = d->p;
     int mode = (int)sio->mode;
     unsigned send = readLocalSend(sio, mode);
+    /* 诊断：mode: 0=NORMAL8 1=NORMAL32 2=MULTI 3=UART。playerId: 0=主机 1=从机。
+     * 若 netStart 从不触发，说明游戏未进入 SIO 传输（mode/Ready/Si 位未就绪）。 */
+    printf("[sio] netStart mode=%d player=%d pending=%d connected=%d siocnt=0x%04X send=0x%04X\n",
+           mode, n->playerId, n->pending, n->connected, (unsigned)sio->siocnt & 0xFFFF, send & 0xFFFF);
+    fflush(stdout);
     mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: 本机查询 */
     n->pending = 1;
     if (mode == GBA_SIO_MULTI) {
@@ -389,12 +394,16 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
     s_netDriver.connected = 0; s_netDriver.playerId = 0;
     s_netDriver.pending = 0; s_netDriver.lastSend = 0;
     core->setPeripheral(core, mPERIPH_GBA_LINK_PORT, d);
+    printf("[sio] attach ok (driver 已注册到 LINK_PORT)\n");
+    fflush(stdout);
     return 1;
 }
 
 EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, int playerId) {
     s_netDriver.connected = connected ? 1 : 0;
     s_netDriver.playerId = playerId;
+    printf("[sio] set_peer connected=%d playerId=%d\n", s_netDriver.connected, s_netDriver.playerId);
+    fflush(stdout);
     /* attach 后若游戏已在 MULTI/NORMAL mode，主动设就绪位（兜底：游戏可能不再 writeSIOCNT）。
      * 与 netWriteSIOCNT 同逻辑。NORMAL 设 Si 位让游戏判定对端在线、从机才会写握手数据。 */
     if (connected && core && core->board) {
@@ -413,8 +422,17 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
     if (!core || !core->board) return;
     struct GBA* gba = core->board;
     struct GBASIO* sio = &gba->sio;
-    if ((struct GBASIODriver*)&s_netDriver != sio->driver) return; /* 未 attach */
+    if ((struct GBASIODriver*)&s_netDriver != sio->driver) {
+        printf("[sio] on_peer DROPPED: driver not attached\n");
+        fflush(stdout);
+        return; /* 未 attach */
+    }
     unsigned peer = (data_lo & 0xFFFF) | ((data_hi & 0xFFFF) << 16);
+    /* 诊断：source: 0=对端查询(本机应回发) 1=对端响应(本机完成)。pending: 本机是否在等。
+     * 正常交替应见：一端 netStart(source=0) → 对端 on_peer src=0 回发 → 本端 on_peer src=1 完成。 */
+    printf("[sio] on_peer mode=%d source=%d player=%d pending=%d peer=0x%04X\n",
+           mode, source, s_netDriver.playerId, s_netDriver.pending, peer & 0xFFFF);
+    fflush(stdout);
 
     if (mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32) {
         /* 双向异步 + source 防死循环。无线接收器协议是双向的（主机须收到从机响应），
@@ -429,15 +447,21 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
          *   source=1 永不回发 → 重复/迟到响应不会触发再回发，杜绝死循环。 */
         int willEcho = (source == 0 && !s_netDriver.pending);
         unsigned my = willEcho ? readLocalSend(sio, mode) : 0; /* finishByMode 会覆盖 SIODATA，须先读 */
+        printf("[sio] NORMAL on_peer src=%d willEcho=%d pending=%d → finishByMode(peer=0x%04X) + IRQ\n",
+               source, willEcho, s_netDriver.pending, peer & 0xFFFF);
+        fflush(stdout);
         finishByMode(sio, mode, peer, 0); /* 写对端数据到 SIODATA + IRQ */
         if (source == 0) {
             if (s_netDriver.pending) {
                 s_netDriver.pending = 0; /* 全双工：本机也在等，用此查询完成 */
+                printf("[sio]   全双工：用对端查询完成本机传输（不回发）\n");
             } else {
+                printf("[sio]   接收方：回发本机数据 my=0x%04X (src=1)\n", my & 0xFFFF);
                 mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 回发本机数据 */
             }
         } else if (s_netDriver.pending) {
             s_netDriver.pending = 0; /* 我的查询有响应了 */
+            printf("[sio]   发起方：收到响应，完成本机传输（清 pending，不回发）\n");
         }
         return;
     }
@@ -446,9 +470,15 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
      * pending 区分主机 on_peer（收到从机回执，完成）与从机 on_peer（收到主机请求，回发+完成）。 */
     if (s_netDriver.pending) {
         s_netDriver.pending = 0;
+        printf("[sio] MULTI 主机 on_peer：收到从机回执，finishByMode(peer=0x%04X, my=lastSend=0x%04X)\n",
+               peer & 0xFFFF, s_netDriver.lastSend & 0xFFFF);
+        fflush(stdout);
         finishByMode(sio, mode, peer, s_netDriver.lastSend);
     } else {
         unsigned my = readLocalSend(sio, mode);
+        printf("[sio] MULTI 从机 on_peer：收到主机请求，回发 my=0x%04X 并 finishByMode(peer=0x%04X)\n",
+               my & 0xFFFF, peer & 0xFFFF);
+        fflush(stdout);
         mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 接收方回发 */
         finishByMode(sio, mode, peer, my);
     }
