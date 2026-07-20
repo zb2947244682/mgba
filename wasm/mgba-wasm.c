@@ -254,6 +254,7 @@ EMSCRIPTEN_KEEPALIVE int mgba_key_l() { return GBA_KEY_L; }
 #include <mgba/gba/interface.h>      /* GBASIODriver, mPERIPH_GBA_LINK_PORT */
 #include <mgba/internal/gba/sio.h>    /* GBASIO, GBASIO*FinishTransfer */
 #include <mgba/internal/gba/io.h>     /* GBA_REG, SIODATA* / SIOMLT_SEND */
+#include <mgba/internal/gba/gba.h>    /* GBARaiseIRQ, GBA_IRQ_SIO */
 
 /* 前端注入的发送钩子。data_lo/data_hi 携带本机待发数据（按 mode 解析）。
  * source: 0=netStart（本机主动 start 发送），1=on_peer 接收方回发（收到对端请求后回发本机数据）。 */
@@ -303,9 +304,16 @@ static void finishByMode(struct GBASIO* sio, int mode, unsigned peer, unsigned m
     switch (mode) {
     case GBA_SIO_NORMAL_8:
         GBASIONormal8FinishTransfer(sio, (uint8_t)(peer & 0xFF), 0);
+        /* 强制 raise SIO IRQ：mGBA 的 FinishTransfer 仅在 SIOCNT 的 Irq 使能位(bit14)
+         * 被设时才 raise IRQ。实测绿宝石 guest 端 SIOCNT 未设该位(0x200c)，
+         * 导致 guest 收到 host 数据后无 SIO 中断，游戏逻辑不推进、不写自己的
+         * SIODATA32_HI，一直回发 hi=0xFFFF，握手死锁。强制 raise 让从机也能
+         * 收到传输完成通知。主机端已设 Irq 位会再 raise 一次，幂等无害。 */
+        GBARaiseIRQ(sio->p, GBA_IRQ_SIO, 0);
         break;
     case GBA_SIO_NORMAL_32:
         GBASIONormal32FinishTransfer(sio, peer, 0);
+        GBARaiseIRQ(sio->p, GBA_IRQ_SIO, 0);
         break;
     case GBA_SIO_MULTI: {
         /* data[0]=主机发送, data[1]=从机发送，2P 其余填 0xFFFF */
@@ -320,6 +328,7 @@ static void finishByMode(struct GBASIO* sio, int mode, unsigned peer, unsigned m
         data[2] = 0xFFFF;
         data[3] = 0xFFFF;
         GBASIOMultiplayerFinishTransfer(sio, data, 0);
+        GBARaiseIRQ(sio->p, GBA_IRQ_SIO, 0);
         break;
     }
     default:
