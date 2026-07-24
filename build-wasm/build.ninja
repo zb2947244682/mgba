@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: mGBA
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -55,1051 +55,1051 @@ build mgba-version-info: phony CMakeFiles/mgba-version-info
 
 build cmake_object_order_depends_target_mgba: phony || mgba-version-info
 
-build CMakeFiles/mgba.dir/src/core/bitmap-cache.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/bitmap-cache.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/bitmap-cache.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/bitmap-cache.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\bitmap-cache.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/cache-set.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/cache-set.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/cache-set.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/cache-set.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\cache-set.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/cheats.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/cheats.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/cheats.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/cheats.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\cheats.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/config.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/config.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/config.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/config.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\config.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/core.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/core.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/core.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/core.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\core.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/directories.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/directories.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/directories.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/directories.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\directories.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/input.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/input.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/input.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/input.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\input.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/interface.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/interface.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/interface.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/interface.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\interface.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/lockstep.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/lockstep.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/lockstep.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/lockstep.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\lockstep.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/log.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/log.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/log.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/log.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\log.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/map-cache.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/map-cache.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/map-cache.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/map-cache.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\map-cache.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/mem-search.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/mem-search.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/mem-search.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/mem-search.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\mem-search.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/rewind.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/rewind.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/rewind.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/rewind.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\rewind.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/serialize.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/serialize.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/serialize.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/serialize.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\serialize.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/sync.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/sync.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/sync.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/sync.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\sync.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/thread.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/thread.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/thread.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/thread.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\thread.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/tile-cache.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/tile-cache.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/tile-cache.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/tile-cache.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\tile-cache.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/timing.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/timing.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/timing.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/timing.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\timing.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/core/library.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/core/library.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/core/library.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/core/library.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\core\library.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\core
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/arm/arm.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/arm/arm.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/arm/arm.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/arm/arm.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\arm\arm.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\arm
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/arm/decoder-arm.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/arm/decoder-arm.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/arm/decoder-arm.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/arm/decoder-arm.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\arm\decoder-arm.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\arm
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/arm/decoder.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/arm/decoder.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/arm/decoder.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/arm/decoder.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\arm\decoder.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\arm
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/arm/decoder-thumb.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/arm/decoder-thumb.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/arm/decoder-thumb.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/arm/decoder-thumb.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\arm\decoder-thumb.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\arm
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/arm/isa-arm.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/arm/isa-arm.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/arm/isa-arm.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/arm/isa-arm.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\arm\isa-arm.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\arm
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/arm/isa-thumb.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/arm/isa-thumb.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/arm/isa-thumb.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/arm/isa-thumb.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\arm\isa-thumb.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\arm
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gb/audio.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gb/audio.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gb/audio.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gb/audio.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gb\audio.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gb
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/audio.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/audio.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/audio.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/audio.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\audio.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/bios.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/bios.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/bios.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/bios.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\bios.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cart/ereader.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cart/ereader.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cart/ereader.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cart/ereader.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cart\ereader.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cart
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cart/gpio.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cart/gpio.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cart/gpio.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cart/gpio.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cart\gpio.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cart
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cart/matrix.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cart/matrix.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cart/matrix.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cart/matrix.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cart\matrix.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cart
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cart/unlicensed.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cart/unlicensed.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cart/unlicensed.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cart/unlicensed.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cart\unlicensed.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cart
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cart/vfame.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cart/vfame.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cart/vfame.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cart/vfame.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cart\vfame.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cart
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cheats.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cheats.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cheats.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cheats.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cheats.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cheats/codebreaker.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cheats/codebreaker.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cheats/codebreaker.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cheats/codebreaker.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cheats\codebreaker.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cheats
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cheats/gameshark.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cheats/gameshark.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cheats/gameshark.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cheats/gameshark.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cheats\gameshark.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cheats
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/cheats/parv3.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/cheats/parv3.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/cheats/parv3.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/cheats/parv3.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\cheats\parv3.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\cheats
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/core.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/core.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/core.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/core.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\core.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/dma.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/dma.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/dma.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/dma.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\dma.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/gba.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/gba.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/gba.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/gba.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\gba.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/hle-bios.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/hle-bios.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/hle-bios.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/hle-bios.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\hle-bios.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/input.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/input.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/input.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/input.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\input.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/io.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/io.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/io.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/io.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\io.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/memory.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/memory.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/memory.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/memory.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\memory.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/overrides.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/overrides.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/overrides.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/overrides.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\overrides.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/cache-set.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/cache-set.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/cache-set.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/cache-set.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\cache-set.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/common.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/common.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/common.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/common.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\common.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/gl.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/gl.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/gl.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/gl.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\gl.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/software-bg.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/software-bg.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/software-bg.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/software-bg.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\software-bg.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/software-mode0.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/software-mode0.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\software-mode0.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/software-obj.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/software-obj.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/software-obj.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/software-obj.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\software-obj.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/renderers/video-software.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/renderers/video-software.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/renderers/video-software.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/renderers/video-software.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\renderers\video-software.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\renderers
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/savedata.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/savedata.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/savedata.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/savedata.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\savedata.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/serialize.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/serialize.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/serialize.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/serialize.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\serialize.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/sharkport.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/sharkport.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/sharkport.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/sharkport.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\sharkport.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/sio.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/sio.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/sio.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/sio.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\sio.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/sio/gbp.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/sio/gbp.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/sio/gbp.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/sio/gbp.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\sio\gbp.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\sio
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/timer.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/timer.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/timer.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/timer.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\timer.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/video.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/video.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/video.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/video.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\video.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/circle-buffer.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/circle-buffer.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/circle-buffer.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/circle-buffer.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\circle-buffer.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/configuration.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/configuration.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/configuration.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/configuration.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\configuration.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/crc32.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/crc32.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/crc32.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/crc32.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\crc32.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/formatting.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/formatting.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/formatting.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/formatting.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\formatting.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/gbk-table.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/gbk-table.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/gbk-table.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/gbk-table.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\gbk-table.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/hash.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/hash.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/hash.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/hash.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\hash.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/md5.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/md5.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/md5.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/md5.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\md5.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/sha1.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/sha1.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/sha1.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/sha1.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\sha1.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/string.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/string.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/string.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/string.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\string.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/table.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/table.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/table.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/table.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\table.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/vector.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/vector.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/vector.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/vector.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\vector.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/vfs.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/vfs.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/vfs.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/vfs.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\vfs.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/audio-buffer.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/audio-buffer.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/audio-buffer.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/audio-buffer.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\audio-buffer.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/audio-resampler.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/audio-resampler.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/audio-resampler.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/audio-resampler.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\audio-resampler.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/convolve.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/convolve.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/convolve.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/convolve.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\convolve.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/elf-read.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/elf-read.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/elf-read.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/elf-read.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\elf-read.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/geometry.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/geometry.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/geometry.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/geometry.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\geometry.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/image.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/image.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/image.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/image.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\image.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/image/export.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/image/export.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/image/export.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/image/export.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\image\export.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\image
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/image/font.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/image/font.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/image/font.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/image/font.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\image\font.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\image
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/image/png-io.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/image/png-io.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/image/png-io.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/image/png-io.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\image\png-io.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\image
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/interpolator.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/interpolator.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/interpolator.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/interpolator.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\interpolator.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/patch.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/patch.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/patch.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/patch.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\patch.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/patch-fast.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/patch-fast.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/patch-fast.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/patch-fast.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\patch-fast.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/patch-ips.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/patch-ips.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/patch-ips.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/patch-ips.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\patch-ips.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/patch-ups.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/patch-ups.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/patch-ups.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/patch-ups.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\patch-ups.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/ring-fifo.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/ring-fifo.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/ring-fifo.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/ring-fifo.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\ring-fifo.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/sfo.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/sfo.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/sfo.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/sfo.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\sfo.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/text-codec.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/text-codec.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/text-codec.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/text-codec.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\text-codec.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/version.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/build-wasm/version.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/version.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/build-wasm/version.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\version.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/vfs/vfs-mem.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/vfs/vfs-mem.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/vfs/vfs-mem.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/vfs/vfs-mem.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\vfs\vfs-mem.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\vfs
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/vfs/vfs-fifo.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/vfs/vfs-fifo.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/vfs/vfs-fifo.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/vfs/vfs-fifo.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\vfs\vfs-fifo.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\vfs
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/vfs/vfs-fd.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/vfs/vfs-fd.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/vfs/vfs-fd.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/vfs/vfs-fd.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\vfs\vfs-fd.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\vfs
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/platform/posix/memory.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/platform/posix/memory.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/platform/posix/memory.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/platform/posix/memory.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\platform\posix\memory.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\platform\posix
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/third-party/inih/ini.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/third-party/inih/ini.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/third-party/inih/ini.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/third-party/inih/ini.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\third-party\inih\ini.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\third-party\inih
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/util/vfs/vfs-dirent.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/util/vfs/vfs-dirent.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/util/vfs/vfs-dirent.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/util/vfs/vfs-dirent.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\util\vfs\vfs-dirent.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\util\vfs
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/sio/dolphin.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/sio/dolphin.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/sio/dolphin.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/sio/dolphin.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\sio\dolphin.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\sio
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/sio/lockstep.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/sio/lockstep.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\sio\lockstep.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\sio
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/extra/battlechip.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/extra/battlechip.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/extra/battlechip.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/extra/battlechip.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\extra\battlechip.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\extra
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/gba/extra/proxy.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/gba/extra/proxy.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/gba/extra/proxy.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/gba/extra/proxy.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\gba\extra\proxy.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\gba\extra
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/feature/commandline.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/feature/commandline.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/feature/commandline.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/feature/commandline.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\feature\commandline.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\feature
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/feature/proxy-backend.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/feature/proxy-backend.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/feature/proxy-backend.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/feature/proxy-backend.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\feature\proxy-backend.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\feature
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/feature/thread-proxy.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/feature/thread-proxy.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/feature/thread-proxy.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/feature/thread-proxy.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\feature\thread-proxy.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\feature
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/feature/video-backend.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/feature/video-backend.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/feature/video-backend.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/feature/video-backend.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\feature\video-backend.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\feature
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/feature/video-logger.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/feature/video-logger.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/feature/video-logger.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/feature/video-logger.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\feature\video-logger.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\feature
   TARGET_SUPPORT_DIR = CMakeFiles\mgba.dir
 
-build CMakeFiles/mgba.dir/src/feature/updater.c.o: C_COMPILER__mgba_unscanned_Debug D$:/Codes/mgba/src/feature/updater.c || cmake_object_order_depends_target_mgba
-  CONFIG = Debug
+build CMakeFiles/mgba.dir/src/feature/updater.c.o: C_COMPILER__mgba_unscanned_Release D$:/Codes/mgba/src/feature/updater.c || cmake_object_order_depends_target_mgba
+  CONFIG = Release
   DEFINES = -DBUILD_STATIC -DENABLE_DIRECTORIES -DENABLE_VFS -DENABLE_VFS_FD -DHAVE_FREELOCALE -DHAVE_FUTIMENS -DHAVE_LOCALE -DHAVE_LOCALTIME_R -DHAVE_NEWLOCALE -DHAVE_REALPATH -DHAVE_SETLOCALE -DHAVE_STRDUP -DHAVE_STRLCPY -DHAVE_STRNDUP -DHAVE_STRTOF_L -DHAVE_USELOCALE -DHAVE_VASPRINTF -DHAVE_XLOCALE -DM_CORE_GBA
   DEP_FILE = CMakeFiles\mgba.dir\src\feature\updater.c.o.d
-  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g -std=c11
+  FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG -std=c11
   INCLUDES = -ID:/Codes/mgba/include -ID:/Codes/mgba/build-wasm/include -ID:/Codes/mgba/src
   OBJECT_DIR = CMakeFiles\mgba.dir
   OBJECT_FILE_DIR = CMakeFiles\mgba.dir\src\feature
@@ -1113,9 +1113,9 @@ build CMakeFiles/mgba.dir/src/feature/updater.c.o: C_COMPILER__mgba_unscanned_De
 #############################################
 # Link the static library libmgba.a
 
-build libmgba.a: C_STATIC_LIBRARY_LINKER__mgba_Debug CMakeFiles/mgba.dir/src/core/bitmap-cache.c.o CMakeFiles/mgba.dir/src/core/cache-set.c.o CMakeFiles/mgba.dir/src/core/cheats.c.o CMakeFiles/mgba.dir/src/core/config.c.o CMakeFiles/mgba.dir/src/core/core.c.o CMakeFiles/mgba.dir/src/core/directories.c.o CMakeFiles/mgba.dir/src/core/input.c.o CMakeFiles/mgba.dir/src/core/interface.c.o CMakeFiles/mgba.dir/src/core/lockstep.c.o CMakeFiles/mgba.dir/src/core/log.c.o CMakeFiles/mgba.dir/src/core/map-cache.c.o CMakeFiles/mgba.dir/src/core/mem-search.c.o CMakeFiles/mgba.dir/src/core/rewind.c.o CMakeFiles/mgba.dir/src/core/serialize.c.o CMakeFiles/mgba.dir/src/core/sync.c.o CMakeFiles/mgba.dir/src/core/thread.c.o CMakeFiles/mgba.dir/src/core/tile-cache.c.o CMakeFiles/mgba.dir/src/core/timing.c.o CMakeFiles/mgba.dir/src/core/library.c.o CMakeFiles/mgba.dir/src/arm/arm.c.o CMakeFiles/mgba.dir/src/arm/decoder-arm.c.o CMakeFiles/mgba.dir/src/arm/decoder.c.o CMakeFiles/mgba.dir/src/arm/decoder-thumb.c.o CMakeFiles/mgba.dir/src/arm/isa-arm.c.o CMakeFiles/mgba.dir/src/arm/isa-thumb.c.o CMakeFiles/mgba.dir/src/gb/audio.c.o CMakeFiles/mgba.dir/src/gba/audio.c.o CMakeFiles/mgba.dir/src/gba/bios.c.o CMakeFiles/mgba.dir/src/gba/cart/ereader.c.o CMakeFiles/mgba.dir/src/gba/cart/gpio.c.o CMakeFiles/mgba.dir/src/gba/cart/matrix.c.o CMakeFiles/mgba.dir/src/gba/cart/unlicensed.c.o CMakeFiles/mgba.dir/src/gba/cart/vfame.c.o CMakeFiles/mgba.dir/src/gba/cheats.c.o CMakeFiles/mgba.dir/src/gba/cheats/codebreaker.c.o CMakeFiles/mgba.dir/src/gba/cheats/gameshark.c.o CMakeFiles/mgba.dir/src/gba/cheats/parv3.c.o CMakeFiles/mgba.dir/src/gba/core.c.o CMakeFiles/mgba.dir/src/gba/dma.c.o CMakeFiles/mgba.dir/src/gba/gba.c.o CMakeFiles/mgba.dir/src/gba/hle-bios.c.o CMakeFiles/mgba.dir/src/gba/input.c.o CMakeFiles/mgba.dir/src/gba/io.c.o CMakeFiles/mgba.dir/src/gba/memory.c.o CMakeFiles/mgba.dir/src/gba/overrides.c.o CMakeFiles/mgba.dir/src/gba/renderers/cache-set.c.o CMakeFiles/mgba.dir/src/gba/renderers/common.c.o CMakeFiles/mgba.dir/src/gba/renderers/gl.c.o CMakeFiles/mgba.dir/src/gba/renderers/software-bg.c.o CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o CMakeFiles/mgba.dir/src/gba/renderers/software-obj.c.o CMakeFiles/mgba.dir/src/gba/renderers/video-software.c.o CMakeFiles/mgba.dir/src/gba/savedata.c.o CMakeFiles/mgba.dir/src/gba/serialize.c.o CMakeFiles/mgba.dir/src/gba/sharkport.c.o CMakeFiles/mgba.dir/src/gba/sio.c.o CMakeFiles/mgba.dir/src/gba/sio/gbp.c.o CMakeFiles/mgba.dir/src/gba/timer.c.o CMakeFiles/mgba.dir/src/gba/video.c.o CMakeFiles/mgba.dir/src/util/circle-buffer.c.o CMakeFiles/mgba.dir/src/util/configuration.c.o CMakeFiles/mgba.dir/src/util/crc32.c.o CMakeFiles/mgba.dir/src/util/formatting.c.o CMakeFiles/mgba.dir/src/util/gbk-table.c.o CMakeFiles/mgba.dir/src/util/hash.c.o CMakeFiles/mgba.dir/src/util/md5.c.o CMakeFiles/mgba.dir/src/util/sha1.c.o CMakeFiles/mgba.dir/src/util/string.c.o CMakeFiles/mgba.dir/src/util/table.c.o CMakeFiles/mgba.dir/src/util/vector.c.o CMakeFiles/mgba.dir/src/util/vfs.c.o CMakeFiles/mgba.dir/src/util/audio-buffer.c.o CMakeFiles/mgba.dir/src/util/audio-resampler.c.o CMakeFiles/mgba.dir/src/util/convolve.c.o CMakeFiles/mgba.dir/src/util/elf-read.c.o CMakeFiles/mgba.dir/src/util/geometry.c.o CMakeFiles/mgba.dir/src/util/image.c.o CMakeFiles/mgba.dir/src/util/image/export.c.o CMakeFiles/mgba.dir/src/util/image/font.c.o CMakeFiles/mgba.dir/src/util/image/png-io.c.o CMakeFiles/mgba.dir/src/util/interpolator.c.o CMakeFiles/mgba.dir/src/util/patch.c.o CMakeFiles/mgba.dir/src/util/patch-fast.c.o CMakeFiles/mgba.dir/src/util/patch-ips.c.o CMakeFiles/mgba.dir/src/util/patch-ups.c.o CMakeFiles/mgba.dir/src/util/ring-fifo.c.o CMakeFiles/mgba.dir/src/util/sfo.c.o CMakeFiles/mgba.dir/src/util/text-codec.c.o CMakeFiles/mgba.dir/version.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-mem.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-fifo.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-fd.c.o CMakeFiles/mgba.dir/src/platform/posix/memory.c.o CMakeFiles/mgba.dir/src/third-party/inih/ini.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-dirent.c.o CMakeFiles/mgba.dir/src/gba/sio/dolphin.c.o CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o CMakeFiles/mgba.dir/src/gba/extra/battlechip.c.o CMakeFiles/mgba.dir/src/gba/extra/proxy.c.o CMakeFiles/mgba.dir/src/feature/commandline.c.o CMakeFiles/mgba.dir/src/feature/proxy-backend.c.o CMakeFiles/mgba.dir/src/feature/thread-proxy.c.o CMakeFiles/mgba.dir/src/feature/video-backend.c.o CMakeFiles/mgba.dir/src/feature/video-logger.c.o CMakeFiles/mgba.dir/src/feature/updater.c.o || mgba-version-info
-  CONFIG = Debug
-  LANGUAGE_COMPILE_FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -g
+build libmgba.a: C_STATIC_LIBRARY_LINKER__mgba_Release CMakeFiles/mgba.dir/src/core/bitmap-cache.c.o CMakeFiles/mgba.dir/src/core/cache-set.c.o CMakeFiles/mgba.dir/src/core/cheats.c.o CMakeFiles/mgba.dir/src/core/config.c.o CMakeFiles/mgba.dir/src/core/core.c.o CMakeFiles/mgba.dir/src/core/directories.c.o CMakeFiles/mgba.dir/src/core/input.c.o CMakeFiles/mgba.dir/src/core/interface.c.o CMakeFiles/mgba.dir/src/core/lockstep.c.o CMakeFiles/mgba.dir/src/core/log.c.o CMakeFiles/mgba.dir/src/core/map-cache.c.o CMakeFiles/mgba.dir/src/core/mem-search.c.o CMakeFiles/mgba.dir/src/core/rewind.c.o CMakeFiles/mgba.dir/src/core/serialize.c.o CMakeFiles/mgba.dir/src/core/sync.c.o CMakeFiles/mgba.dir/src/core/thread.c.o CMakeFiles/mgba.dir/src/core/tile-cache.c.o CMakeFiles/mgba.dir/src/core/timing.c.o CMakeFiles/mgba.dir/src/core/library.c.o CMakeFiles/mgba.dir/src/arm/arm.c.o CMakeFiles/mgba.dir/src/arm/decoder-arm.c.o CMakeFiles/mgba.dir/src/arm/decoder.c.o CMakeFiles/mgba.dir/src/arm/decoder-thumb.c.o CMakeFiles/mgba.dir/src/arm/isa-arm.c.o CMakeFiles/mgba.dir/src/arm/isa-thumb.c.o CMakeFiles/mgba.dir/src/gb/audio.c.o CMakeFiles/mgba.dir/src/gba/audio.c.o CMakeFiles/mgba.dir/src/gba/bios.c.o CMakeFiles/mgba.dir/src/gba/cart/ereader.c.o CMakeFiles/mgba.dir/src/gba/cart/gpio.c.o CMakeFiles/mgba.dir/src/gba/cart/matrix.c.o CMakeFiles/mgba.dir/src/gba/cart/unlicensed.c.o CMakeFiles/mgba.dir/src/gba/cart/vfame.c.o CMakeFiles/mgba.dir/src/gba/cheats.c.o CMakeFiles/mgba.dir/src/gba/cheats/codebreaker.c.o CMakeFiles/mgba.dir/src/gba/cheats/gameshark.c.o CMakeFiles/mgba.dir/src/gba/cheats/parv3.c.o CMakeFiles/mgba.dir/src/gba/core.c.o CMakeFiles/mgba.dir/src/gba/dma.c.o CMakeFiles/mgba.dir/src/gba/gba.c.o CMakeFiles/mgba.dir/src/gba/hle-bios.c.o CMakeFiles/mgba.dir/src/gba/input.c.o CMakeFiles/mgba.dir/src/gba/io.c.o CMakeFiles/mgba.dir/src/gba/memory.c.o CMakeFiles/mgba.dir/src/gba/overrides.c.o CMakeFiles/mgba.dir/src/gba/renderers/cache-set.c.o CMakeFiles/mgba.dir/src/gba/renderers/common.c.o CMakeFiles/mgba.dir/src/gba/renderers/gl.c.o CMakeFiles/mgba.dir/src/gba/renderers/software-bg.c.o CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o CMakeFiles/mgba.dir/src/gba/renderers/software-obj.c.o CMakeFiles/mgba.dir/src/gba/renderers/video-software.c.o CMakeFiles/mgba.dir/src/gba/savedata.c.o CMakeFiles/mgba.dir/src/gba/serialize.c.o CMakeFiles/mgba.dir/src/gba/sharkport.c.o CMakeFiles/mgba.dir/src/gba/sio.c.o CMakeFiles/mgba.dir/src/gba/sio/gbp.c.o CMakeFiles/mgba.dir/src/gba/timer.c.o CMakeFiles/mgba.dir/src/gba/video.c.o CMakeFiles/mgba.dir/src/util/circle-buffer.c.o CMakeFiles/mgba.dir/src/util/configuration.c.o CMakeFiles/mgba.dir/src/util/crc32.c.o CMakeFiles/mgba.dir/src/util/formatting.c.o CMakeFiles/mgba.dir/src/util/gbk-table.c.o CMakeFiles/mgba.dir/src/util/hash.c.o CMakeFiles/mgba.dir/src/util/md5.c.o CMakeFiles/mgba.dir/src/util/sha1.c.o CMakeFiles/mgba.dir/src/util/string.c.o CMakeFiles/mgba.dir/src/util/table.c.o CMakeFiles/mgba.dir/src/util/vector.c.o CMakeFiles/mgba.dir/src/util/vfs.c.o CMakeFiles/mgba.dir/src/util/audio-buffer.c.o CMakeFiles/mgba.dir/src/util/audio-resampler.c.o CMakeFiles/mgba.dir/src/util/convolve.c.o CMakeFiles/mgba.dir/src/util/elf-read.c.o CMakeFiles/mgba.dir/src/util/geometry.c.o CMakeFiles/mgba.dir/src/util/image.c.o CMakeFiles/mgba.dir/src/util/image/export.c.o CMakeFiles/mgba.dir/src/util/image/font.c.o CMakeFiles/mgba.dir/src/util/image/png-io.c.o CMakeFiles/mgba.dir/src/util/interpolator.c.o CMakeFiles/mgba.dir/src/util/patch.c.o CMakeFiles/mgba.dir/src/util/patch-fast.c.o CMakeFiles/mgba.dir/src/util/patch-ips.c.o CMakeFiles/mgba.dir/src/util/patch-ups.c.o CMakeFiles/mgba.dir/src/util/ring-fifo.c.o CMakeFiles/mgba.dir/src/util/sfo.c.o CMakeFiles/mgba.dir/src/util/text-codec.c.o CMakeFiles/mgba.dir/version.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-mem.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-fifo.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-fd.c.o CMakeFiles/mgba.dir/src/platform/posix/memory.c.o CMakeFiles/mgba.dir/src/third-party/inih/ini.c.o CMakeFiles/mgba.dir/src/util/vfs/vfs-dirent.c.o CMakeFiles/mgba.dir/src/gba/sio/dolphin.c.o CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o CMakeFiles/mgba.dir/src/gba/extra/battlechip.c.o CMakeFiles/mgba.dir/src/gba/extra/proxy.c.o CMakeFiles/mgba.dir/src/feature/commandline.c.o CMakeFiles/mgba.dir/src/feature/proxy-backend.c.o CMakeFiles/mgba.dir/src/feature/thread-proxy.c.o CMakeFiles/mgba.dir/src/feature/video-backend.c.o CMakeFiles/mgba.dir/src/feature/video-logger.c.o CMakeFiles/mgba.dir/src/feature/updater.c.o || mgba-version-info
+  CONFIG = Release
+  LANGUAGE_COMPILE_FLAGS = -DPATH_MAX=4096 -D_GNU_SOURCE -DDISABLE_THREADING -DDISABLE_ANON_MMAP -Wall -Wextra -Wno-missing-field-initializers -Werror=implicit-function-declaration -Werror=implicit-int -fwrapv -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles\mgba.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

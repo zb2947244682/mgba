@@ -5,28 +5,453 @@ PATH += D:\Codes\emsdk
 PATH += D:\Codes\emsdk\upstream\emscripten
 
 Setting environment variables:
-PATH = D:\Codes\emsdk;D:\Codes\emsdk\upstream\emscripten;C:\Program Files\PowerShell\7;c:\Users\Jimmy\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\Jimmy\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Bandizip\;C:\Program Files\PowerShell\7\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\Jimmy\.local\bin;C:\Program Files (x86)\NetSarang\Xshell 8\;E:\EXE;E:\FOL\FFMPEG\bin;C:\Program Files\GitHub CLI\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;C:\Users\Jimmy\.kimi-code\bin;C:\Users\Jimmy\.cargo\bin;C:\Users\Jimmy\AppData\Local\Microsoft\WindowsApps;C:\Users\Jimmy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jimmy\AppData\Local\Python\bin;C:\Users\Jimmy\.dotnet\tools;C:\Users\Jimmy\AppData\Local\Programs\Ollama;C:\Users\Jimmy\AppData\Local\PowerToys\DSCModules\;C:\Users\Jimmy\AppData\Roaming\npm
+PATH = D:\Codes\emsdk;D:\Codes\emsdk\upstream\emscripten;C:\Program Files\PowerShell\7;c:\Users\Jimmy\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\Jimmy\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Bandizip\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\Jimmy\.local\bin;C:\Program Files (x86)\NetSarang\Xshell 8\;E:\EXE;E:\FOL\FFMPEG\bin;C:\Program Files\GitHub CLI\;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\PowerShell\7\;C:\Users\Jimmy\AppData\Local\Programs\Python\Python314;C:\Users\Jimmy\AppData\Local\Programs\Python\Python314\Scripts;C:\Users\Jimmy\AppData\Local\Programs\Python\Launcher\;C:\Users\Jimmy\.kimi-code\bin;C:\Users\Jimmy\.cargo\bin;C:\Users\Jimmy\AppData\Local\Microsoft\WindowsApps;C:\Users\Jimmy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jimmy\.dotnet\tools;C:\Users\Jimmy\AppData\Local\Programs\Ollama;C:\Users\Jimmy\AppData\Local\PowerToys\DSCModules\;C:\Users\Jimmy\AppData\Roaming\npm
 EMSDK_NODE = D:\Codes\emsdk\node\22.16.0_64bit\bin\node.exe
 EMSDK_PYTHON = D:\Codes\emsdk\python\3.13.3_64bit\python.exe
 [build-wasm] 工具版本：
-  cmake : cmake version 4.3.4
+  cmake : cmake version 4.4.0
   ninja : 1.13.0.git.kitware.jobserver-pipe-1
   emcc  : emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.2 (7a2d97d627ff4945eae28847ce0387ac52b92c09)
   build : D:\Codes\mgba\build-wasm
   out   : D:\Codes\mgba\wasm
 [build-wasm] 配置 CMake（LIBMGBA_ONLY + 仅 GBA 核心）...
 -- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
--- Configuring done (0.6s)
--- Generating done (0.0s)
+-- Configuring done (1.0s)
+-- Generating done (0.1s)
 -- Build files have been written to: D:/Codes/mgba/build-wasm
 [build-wasm] 编译 mGBA 核心静态库（libmgba.a）...
-[1/3] C:\Windows\system32\cmd.exe /C "cd /D D:\Codes\mgba && C:\Users\Jimmy\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\cmake\data\bin\cmake.exe -DBINARY_NAME=mgba -DCONFIG_FILE=D:/Codes/mgba/src/core/version.c.in -DOUT_FILE=D:/Codes/mgba/build-wasm/version.c -P D:/Codes/mgba/version.cmake"
-[2/3] Building C object CMakeFiles/mgba.dir/version.c.o
-[3/3] Linking C static library libmgba.a
+[1/107] C:\Windows\system32\cmd.exe /C "cd /D D:\Codes\mgba && C:\Users\Jimmy\AppData\Local\Programs\Python\Python314\Lib\site-packages\cmake\data\bin\cmake.exe -DBINARY_NAME=mgba -DCONFIG_FILE=D:/Codes/mgba/src/core/version.c.in -DOUT_FILE=D:/Codes/mgba/build-wasm/version.c -P D:/Codes/mgba/version.cmake"
+[2/107] Building C object CMakeFiles/mgba.dir/src/core/lockstep.c.o
+[3/107] Building C object CMakeFiles/mgba.dir/src/core/timing.c.o
+[4/107] Building C object CMakeFiles/mgba.dir/src/core/directories.c.o
+[5/107] Building C object CMakeFiles/mgba.dir/src/core/sync.c.o
+[6/107] Building C object CMakeFiles/mgba.dir/src/core/interface.c.o
+[7/107] Building C object CMakeFiles/mgba.dir/src/core/thread.c.o
+[8/107] Building C object CMakeFiles/mgba.dir/src/core/rewind.c.o
+[9/107] Building C object CMakeFiles/mgba.dir/src/core/log.c.o
+[10/107] Building C object CMakeFiles/mgba.dir/src/core/bitmap-cache.c.o
+[11/107] Building C object CMakeFiles/mgba.dir/src/core/core.c.o
+[12/107] Building C object CMakeFiles/mgba.dir/src/core/serialize.c.o
+[13/107] Building C object CMakeFiles/mgba.dir/src/core/config.c.o
+[14/107] Building C object CMakeFiles/mgba.dir/src/core/map-cache.c.o
+[15/107] Building C object CMakeFiles/mgba.dir/src/core/tile-cache.c.o
+[16/107] Building C object CMakeFiles/mgba.dir/src/core/cache-set.c.o
+[17/107] Building C object CMakeFiles/mgba.dir/src/core/input.c.o
+[18/107] Building C object CMakeFiles/mgba.dir/src/core/mem-search.c.o
+[19/107] Building C object CMakeFiles/mgba.dir/src/core/cheats.c.o
+[20/107] Building C object CMakeFiles/mgba.dir/src/core/library.c.o
+[21/107] Building C object CMakeFiles/mgba.dir/src/arm/decoder.c.o
+[22/107] Building C object CMakeFiles/mgba.dir/src/arm/arm.c.o
+[23/107] Building C object CMakeFiles/mgba.dir/src/arm/decoder-thumb.c.o
+[24/107] Building C object CMakeFiles/mgba.dir/src/gba/cart/unlicensed.c.o
+[25/107] Building C object CMakeFiles/mgba.dir/src/gba/cart/matrix.c.o
+[26/107] Building C object CMakeFiles/mgba.dir/src/gba/cart/vfame.c.o
+[27/107] Building C object CMakeFiles/mgba.dir/src/arm/isa-thumb.c.o
+[28/107] Building C object CMakeFiles/mgba.dir/src/gba/audio.c.o
+[29/107] Building C object CMakeFiles/mgba.dir/src/gba/cheats/codebreaker.c.o
+[30/107] Building C object CMakeFiles/mgba.dir/src/gba/cheats/gameshark.c.o
+[31/107] Building C object CMakeFiles/mgba.dir/src/gba/bios.c.o
+[32/107] Building C object CMakeFiles/mgba.dir/src/gba/cheats.c.o
+[33/107] Building C object CMakeFiles/mgba.dir/src/gba/cart/gpio.c.o
+[34/107] Building C object CMakeFiles/mgba.dir/src/gb/audio.c.o
+[35/107] Building C object CMakeFiles/mgba.dir/src/gba/cart/ereader.c.o
+[36/107] Building C object CMakeFiles/mgba.dir/src/gba/cheats/parv3.c.o
+[37/107] Building C object CMakeFiles/mgba.dir/src/gba/input.c.o
+[38/107] Building C object CMakeFiles/mgba.dir/src/gba/hle-bios.c.o
+[39/107] Building C object CMakeFiles/mgba.dir/src/gba/dma.c.o
+[40/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/gl.c.o
+[41/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/common.c.o
+[42/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/cache-set.c.o
+[43/107] Building C object CMakeFiles/mgba.dir/src/gba/core.c.o
+[44/107] Building C object CMakeFiles/mgba.dir/src/gba/gba.c.o
+[45/107] Building C object CMakeFiles/mgba.dir/src/gba/overrides.c.o
+D:/Codes/mgba/src/gba/overrides.c:16:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   16 |         { "AWRE", GBA_SAVEDATA_FLASH512, HW_NONE, 0x8038810 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:17:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   17 |         { "AWRP", GBA_SAVEDATA_FLASH512, HW_NONE, 0x8038810 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:20:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   20 |         { "AW2E", GBA_SAVEDATA_FLASH512, HW_NONE, 0x8036E08 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:21:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   21 |         { "AW2P", GBA_SAVEDATA_FLASH512, HW_NONE, 0x803719C },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:24:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   24 |         { "U3IJ", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:25:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   25 |         { "U3IE", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:26:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   26 |         { "U3IP", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:29:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   29 |         { "U32J", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:30:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   30 |         { "U32E", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:31:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   31 |         { "U32P", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:34:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   34 |         { "AC8J", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:35:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   35 |         { "AC8E", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:36:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   36 |         { "AC8P", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:39:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   39 |         { "BDKJ", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:42:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   42 |         { "ALGP", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:45:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   45 |         { "ALFJ", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:46:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   46 |         { "ALFE", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:47:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   47 |         { "ALFP", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:50:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   50 |         { "BDBE", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:51:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   51 |         { "BDBP", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:54:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   54 |         { "V49J", GBA_SAVEDATA_SRAM, HW_RUMBLE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:55:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   55 |         { "V49E", GBA_SAVEDATA_SRAM, HW_RUMBLE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:56:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   56 |         { "V49P", GBA_SAVEDATA_SRAM, HW_RUMBLE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:59:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   59 |         { "PEAJ", GBA_SAVEDATA_FLASH1M, HW_EREADER, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:60:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   60 |         { "PSAJ", GBA_SAVEDATA_FLASH1M, HW_EREADER, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:61:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   61 |         { "PSAE", GBA_SAVEDATA_FLASH1M, HW_EREADER, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:64:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   64 |         { "AFXE", GBA_SAVEDATA_FLASH512, HW_NONE, 0x8000428 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:67:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   67 |         { "BFTJ", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:70:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   70 |         { "2GBP", GBA_SAVEDATA_SRAM, HW_RUMBLE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:73:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   73 |         { "AI2E", GBA_SAVEDATA_FORCE_NONE, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:74:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   74 |         { "AI2P", GBA_SAVEDATA_FORCE_NONE, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:77:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   77 |         { "BGWJ", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:80:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   80 |         { "AGFE", GBA_SAVEDATA_FLASH512, HW_NONE, 0x801353A },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:83:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   83 |         { "KHPJ", GBA_SAVEDATA_EEPROM, HW_TILT, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:86:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   86 |         { "BLJJ", GBA_SAVEDATA_FLASH512, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:87:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   87 |         { "BLJK", GBA_SAVEDATA_FLASH512, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:90:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   90 |         { "BLVJ", GBA_SAVEDATA_FLASH512, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:93:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   93 |         { "AREE", GBA_SAVEDATA_SRAM, HW_NONE, 0x800032E },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:96:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   96 |         { "AZCE", GBA_SAVEDATA_SRAM, HW_NONE, 0x80004E8 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:99:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+   99 |         { "BSME", GBA_SAVEDATA_EEPROM, HW_NONE, 0x8000290 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:102:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  102 |         { "AXVJ", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:103:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  103 |         { "AXVE", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:104:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  104 |         { "AXVP", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:105:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  105 |         { "AXVI", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:106:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  106 |         { "AXVS", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:107:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  107 |         { "AXVD", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:108:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  108 |         { "AXVF", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:111:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  111 |         { "AXPJ", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:112:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  112 |         { "AXPE", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:113:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  113 |         { "AXPP", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:114:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  114 |         { "AXPI", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:115:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  115 |         { "AXPS", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:116:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  116 |         { "AXPD", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:117:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  117 |         { "AXPF", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:120:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  120 |         { "BPEJ", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:121:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  121 |         { "BPEE", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:122:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  122 |         { "BPEP", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:123:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  123 |         { "BPEI", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:124:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  124 |         { "BPES", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:125:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  125 |         { "BPED", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:126:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  126 |         { "BPEF", GBA_SAVEDATA_FLASH1M, HW_RTC, 0x80008C6 },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:129:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  129 |         { "B24E", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:130:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  130 |         { "B24P", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:133:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  133 |         { "BPRJ", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:134:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  134 |         { "BPRE", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:135:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  135 |         { "BPRP", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:136:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  136 |         { "BPRI", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:137:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  137 |         { "BPRS", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:138:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  138 |         { "BPRD", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:139:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  139 |         { "BPRF", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:142:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  142 |         { "BPGJ", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:143:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  143 |         { "BPGE", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:144:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  144 |         { "BPGP", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:145:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  145 |         { "BPGI", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:146:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  146 |         { "BPGS", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:147:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  147 |         { "BPGD", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:148:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  148 |         { "BPGF", GBA_SAVEDATA_FLASH1M, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:151:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  151 |         { "BR4J", GBA_SAVEDATA_FLASH512, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:154:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  154 |         { "AR8E", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:155:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  155 |         { "AROP", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:158:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  158 |         { "BKAJ", GBA_SAVEDATA_FLASH1M, HW_RTC, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:161:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  161 |         { "U33J", GBA_SAVEDATA_EEPROM, HW_RTC | HW_LIGHT_SENSOR, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:164:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  164 |         { "ASLE", GBA_SAVEDATA_FORCE_NONE, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:165:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  165 |         { "ASLF", GBA_SAVEDATA_FORCE_NONE, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:168:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  168 |         { "AA2J", GBA_SAVEDATA_EEPROM, HW_NONE, 0x800052E },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:169:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  169 |         { "AA2E", GBA_SAVEDATA_EEPROM, HW_NONE, 0x800052E },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:170:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  170 |         { "AA2P", GBA_SAVEDATA_AUTODETECT, HW_NONE, 0x800052E },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:173:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  173 |         { "A3AJ", GBA_SAVEDATA_EEPROM, HW_NONE, 0x8002B9C },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:174:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  174 |         { "A3AE", GBA_SAVEDATA_EEPROM, HW_NONE, 0x8002B9C },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:175:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  175 |         { "A3AP", GBA_SAVEDATA_EEPROM, HW_NONE, 0x8002B9C },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:178:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  178 |         { "AX4J", GBA_SAVEDATA_FLASH1M, HW_NONE, 0x800072A },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:179:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  179 |         { "AX4E", GBA_SAVEDATA_FLASH1M, HW_NONE, 0x800072A },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:180:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  180 |         { "AX4P", GBA_SAVEDATA_FLASH1M, HW_NONE, 0x800072A },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:183:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  183 |         { "ALUE", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:184:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  184 |         { "ALUP", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:187:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  187 |         { "A2YE", GBA_SAVEDATA_FORCE_NONE, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:190:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  190 |         { "BUHJ", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:193:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  193 |         { "RZWJ", GBA_SAVEDATA_SRAM, HW_RUMBLE | HW_GYRO, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:194:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  194 |         { "RZWE", GBA_SAVEDATA_SRAM, HW_RUMBLE | HW_GYRO, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:195:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  195 |         { "RZWP", GBA_SAVEDATA_SRAM, HW_RUMBLE | HW_GYRO, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:198:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  198 |         { "KYGJ", GBA_SAVEDATA_EEPROM, HW_TILT, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:199:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  199 |         { "KYGE", GBA_SAVEDATA_EEPROM, HW_TILT, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:200:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  200 |         { "KYGP", GBA_SAVEDATA_EEPROM, HW_TILT, GBA_IDLE_LOOP_NONE },
+      |           ^~~~~~
+D:/Codes/mgba/src/gba/overrides.c:203:4: warning: initializer-string for character array is too long, array size is 4 but initializer has size 5 (including the null terminating character); did you mean to use the 'nonstring' attribute? [-Wunterminated-string-initialization]
+  203 |         { "TCHK", GBA_SAVEDATA_EEPROM, HW_NONE, GBA_IDLE_LOOP_NONE, },
+      |           ^~~~~~
+104 warnings generated.
+[46/107] Building C object CMakeFiles/mgba.dir/src/gba/io.c.o
+[47/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/software-obj.c.o
+[48/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/software-bg.c.o
+[49/107] Building C object CMakeFiles/mgba.dir/src/gba/serialize.c.o
+[50/107] Building C object CMakeFiles/mgba.dir/src/gba/sharkport.c.o
+[51/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/video-software.c.o
+[52/107] Building C object CMakeFiles/mgba.dir/src/gba/savedata.c.o
+D:/Codes/mgba/src/gba/savedata.c:712:59: warning: format specifies type 'long' but the argument has type 'time_t' (aka 'long long') [-Wformat]
+  712 |         mLOG(GBA_SAVE, DEBUG, "Savegame time offset set to %li", savedata->p->memory.hw.rtc.offset);
+      |                                                            ~~~   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                            %lli
+D:/Codes/mgba/include\mgba/core/log.h:75:81: note: expanded from macro 'mLOG'
+   75 | #define mLOG(CATEGORY, LEVEL, ...) mLog(_mLOG_CAT_ ## CATEGORY, mLOG_ ## LEVEL, __VA_ARGS__)
+      |                                                                                 ^~~~~~~~~~~
+1 warning generated.
+[53/107] Building C object CMakeFiles/mgba.dir/src/gba/timer.c.o
+[54/107] Building C object CMakeFiles/mgba.dir/src/gba/sio.c.o
+[55/107] Building C object CMakeFiles/mgba.dir/src/util/crc32.c.o
+[56/107] Building C object CMakeFiles/mgba.dir/src/arm/decoder-arm.c.o
+[57/107] Building C object CMakeFiles/mgba.dir/src/util/circle-buffer.c.o
+[58/107] Building C object CMakeFiles/mgba.dir/src/util/configuration.c.o
+[59/107] Building C object CMakeFiles/mgba.dir/src/gba/sio/gbp.c.o
+[60/107] Building C object CMakeFiles/mgba.dir/src/util/formatting.c.o
+[61/107] Building C object CMakeFiles/mgba.dir/src/gba/memory.c.o
+[62/107] Building C object CMakeFiles/mgba.dir/src/gba/video.c.o
+[63/107] Building C object CMakeFiles/mgba.dir/src/util/gbk-table.c.o
+[64/107] Building C object CMakeFiles/mgba.dir/src/util/hash.c.o
+[65/107] Building C object CMakeFiles/mgba.dir/src/util/md5.c.o
+[66/107] Building C object CMakeFiles/mgba.dir/src/util/sha1.c.o
+[67/107] Building C object CMakeFiles/mgba.dir/src/util/vfs.c.o
+[68/107] Building C object CMakeFiles/mgba.dir/src/util/audio-resampler.c.o
+[69/107] Building C object CMakeFiles/mgba.dir/src/util/string.c.o
+[70/107] Building C object CMakeFiles/mgba.dir/src/util/audio-buffer.c.o
+[71/107] Building C object CMakeFiles/mgba.dir/src/util/geometry.c.o
+[72/107] Building C object CMakeFiles/mgba.dir/src/util/elf-read.c.o
+[73/107] Building C object CMakeFiles/mgba.dir/src/util/convolve.c.o
+[74/107] Building C object CMakeFiles/mgba.dir/src/util/image/export.c.o
+[75/107] Building C object CMakeFiles/mgba.dir/src/util/table.c.o
+[76/107] Building C object CMakeFiles/mgba.dir/src/util/image/font.c.o
+[77/107] Building C object CMakeFiles/mgba.dir/src/util/image/png-io.c.o
+[78/107] Building C object CMakeFiles/mgba.dir/src/util/vector.c.o
+[79/107] Building C object CMakeFiles/mgba.dir/src/util/image.c.o
+[80/107] Building C object CMakeFiles/mgba.dir/src/util/interpolator.c.o
+[81/107] Building C object CMakeFiles/mgba.dir/src/util/patch.c.o
+[82/107] Building C object CMakeFiles/mgba.dir/src/util/patch-ips.c.o
+[83/107] Building C object CMakeFiles/mgba.dir/src/util/ring-fifo.c.o
+[84/107] Building C object CMakeFiles/mgba.dir/version.c.o
+[85/107] Building C object CMakeFiles/mgba.dir/src/util/sfo.c.o
+[86/107] Building C object CMakeFiles/mgba.dir/src/util/patch-ups.c.o
+[87/107] Building C object CMakeFiles/mgba.dir/src/util/patch-fast.c.o
+[88/107] Building C object CMakeFiles/mgba.dir/src/util/text-codec.c.o
+[89/107] Building C object CMakeFiles/mgba.dir/src/util/vfs/vfs-mem.c.o
+[90/107] Building C object CMakeFiles/mgba.dir/src/util/vfs/vfs-fifo.c.o
+[91/107] Building C object CMakeFiles/mgba.dir/src/util/vfs/vfs-fd.c.o
+[92/107] Building C object CMakeFiles/mgba.dir/src/platform/posix/memory.c.o
+[93/107] Building C object CMakeFiles/mgba.dir/src/third-party/inih/ini.c.o
+[94/107] Building C object CMakeFiles/mgba.dir/src/util/vfs/vfs-dirent.c.o
+[95/107] Building C object CMakeFiles/mgba.dir/src/arm/isa-arm.c.o
+[96/107] Building C object CMakeFiles/mgba.dir/src/feature/video-backend.c.o
+[97/107] Building C object CMakeFiles/mgba.dir/src/gba/extra/battlechip.c.o
+[98/107] Building C object CMakeFiles/mgba.dir/src/gba/sio/dolphin.c.o
+[99/107] Building C object CMakeFiles/mgba.dir/src/feature/proxy-backend.c.o
+[100/107] Building C object CMakeFiles/mgba.dir/src/feature/commandline.c.o
+[101/107] Building C object CMakeFiles/mgba.dir/src/feature/updater.c.o
+[102/107] Building C object CMakeFiles/mgba.dir/src/feature/thread-proxy.c.o
+[103/107] Building C object CMakeFiles/mgba.dir/src/gba/renderers/software-mode0.c.o
+[104/107] Building C object CMakeFiles/mgba.dir/src/gba/extra/proxy.c.o
+[105/107] Building C object CMakeFiles/mgba.dir/src/feature/video-logger.c.o
+[106/107] Building C object CMakeFiles/mgba.dir/src/gba/sio/lockstep.c.o
+[107/107] Linking C static library libmgba.a
 [build-wasm] 找到静态库：D:\Codes\mgba\build-wasm\libmgba.a
 [build-wasm] 未读到 flags.make 的 C_DEFINES，回落到已知宏集合
 [build-wasm] 链接 wasm -> D:\Codes\mgba\wasm\mgba.js (+ mgba.wasm)
 [build-wasm] 完成。产物：
-  mgba.js            71,938 bytes  D:\Codes\mgba\wasm\mgba.js
-  mgba.wasm         638,123 bytes  D:\Codes\mgba\wasm\mgba.wasm
+  mgba.js            71,952 bytes  D:\Codes\mgba\wasm\mgba.js
+  mgba.wasm         640,152 bytes  D:\Codes\mgba\wasm\mgba.wasm
 [build-wasm] 下一步自检：node wasm\test-node.js（需自备 ROM 路径）
