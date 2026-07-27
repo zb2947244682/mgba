@@ -357,8 +357,14 @@ static uint32_t netId(const struct GBASIODriver* d) { (void)d; return 0x574F524E
 static bool netLoadState(struct GBASIODriver* d, const void* s, size_t sz) { (void)d; (void)s; (void)sz; return false; }
 static void netSaveState(struct GBASIODriver* d, void** s, size_t* sz) { (void)d; if (s) *s = NULL; if (sz) *sz = 0; }
 static void netSetMode(struct GBASIODriver* d, enum GBASIOMode mode) {
-    (void)d;
-    printf("[sio] setMode mode=%d(%s)\n", (int)mode, sioModeStr((int)mode));
+    struct GBASIONetDriver* n = (struct GBASIONetDriver*)d;
+    /* 模式切换时前一模式的待完成传输作废：清 pending/lastSend。否则残留 pending
+     * 会阻塞新模式的 MULTI 兜底触发（netWriteSIOCNT 里 !pending 才触发），或让
+     * 新模式 on_peer(src=1) 被误判为"发起方完成"。实测：宝可梦 RFU 探测失败后
+     * 从 NORMAL32(pending=1) 切 MULTI，不清则 MULTI 兜底被卡。 */
+    n->pending = 0;
+    n->lastSend = 0;
+    printf("[sio] setMode mode=%d(%s) pending cleared\n", (int)mode, sioModeStr((int)mode));
     fflush(stdout);
 }
 static bool netHandlesMode(struct GBASIODriver* d, enum GBASIOMode mode) {
