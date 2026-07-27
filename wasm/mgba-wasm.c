@@ -355,6 +355,7 @@ static void netReset(struct GBASIODriver* d) {
     struct GBASIONetDriver* n = (struct GBASIONetDriver*)d;
     n->pending = 0;
     n->lastSend = 0;
+    n->sending = 0;
 }
 static uint32_t netId(const struct GBASIODriver* d) { (void)d; return 0x574F524E; /* 'NETW' */ }
 static bool netLoadState(struct GBASIODriver* d, const void* s, size_t sz) { (void)d; (void)s; (void)sz; return false; }
@@ -367,6 +368,7 @@ static void netSetMode(struct GBASIODriver* d, enum GBASIOMode mode) {
      * 从 NORMAL32(pending=1) 切 MULTI，不清则 MULTI 兜底被卡。 */
     n->pending = 0;
     n->lastSend = 0;
+    n->sending = 0;
     printf("[sio] setMode mode=%d(%s) pending cleared\n", (int)mode, sioModeStr((int)mode));
     fflush(stdout);
 }
@@ -484,7 +486,7 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
     /* NORMAL8/32/MULTI 全异步：完成走 on_peer 的 finishByMode，核心 _sioFinish 不参与，故 finish* 全 NULL。 */
     d->finishMultiplayer = NULL; d->finishNormal8 = NULL; d->finishNormal32 = NULL;
     s_netDriver.connected = 0; s_netDriver.playerId = 0;
-    s_netDriver.pending = 0; s_netDriver.lastSend = 0;
+    s_netDriver.pending = 0; s_netDriver.lastSend = 0; s_netDriver.sending = 0;
     core->setPeripheral(core, mPERIPH_GBA_LINK_PORT, d);
     printf("[sio] attach ok (driver 已注册到 LINK_PORT)\n");
     fflush(stdout);
@@ -615,7 +617,7 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
              * 主机在每次收到从机回执后立即发起下一次传输，形成连续帧同步循环。
              * 游戏每帧收到 SIOMULTI 更新 + IRQ，才有机会写 SIOMLT_SEND 推进协议。
              * 加 sending 防重入（同步 harness 中 mgba_net_send 可能同步回调 on_peer）。 */
-            if (s_netDriver.playerId == 0 && !s_netDriver.pending) {
+            if (s_netDriver.playerId == 0 && !s_netDriver.pending && !s_netDriver.sending) {
                 printf("[sio]   MULTI 帧同步：触发下一次 netStart\n");
                 fflush(stdout);
                 netStart(&s_netDriver.d);
@@ -665,4 +667,5 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_detach(struct mCore* core) {
     core->setPeripheral(core, mPERIPH_GBA_LINK_PORT, NULL);
     s_netDriver.connected = 0;
     s_netDriver.pending = 0;
+    s_netDriver.sending = 0;
 }
