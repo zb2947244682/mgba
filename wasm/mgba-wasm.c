@@ -336,13 +336,15 @@ static void finishByMode(struct GBASIO* sio, int mode, unsigned peer, unsigned m
     }
 }
 
-/* SIO mode 枚举名（与 sio.h GBASIOMode 一致：0=NORMAL8 1=NORMAL32 2=MULTI 3=UART），便于 printf 可读。 */
+/* SIO mode 枚举名（与 sio.h GBASIOMode 一致：0=NORMAL8 1=NORMAL32 2=MULTI 3=UART 8=GPIO 12=JOYBUS），便于 printf 可读。 */
 static const char* sioModeStr(int m) {
     switch (m) {
         case 0: return "NORMAL8";
         case 1: return "NORMAL32";
         case 2: return "MULTI";
         case 3: return "UART";
+        case 8: return "GPIO";
+        case 12: return "JOYBUS";
         default: return "?";
     }
 }
@@ -424,7 +426,20 @@ static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
     }
     return v;
 }
-static uint16_t netWriteRCNT(struct GBASIODriver* d, uint16_t v) { (void)d; return v; }
+static uint16_t netWriteRCNT(struct GBASIODriver* d, uint16_t v) {
+    struct GBASIO* sio = d->p;
+    /* 诊断：游戏写 RCNT 时记录（去重）。此前 netWriteRCNT 是 no-op 无日志，
+     * 导致"游戏若只写 RCNT（不改 mode）则完全不可见"的诊断盲点——光明之魂2 实测
+     * 日志无 setMode 无 writeSIOCNT，须靠此确认游戏到底有没有动 SIO。 */
+    static uint16_t s_lastRcnt = 0xFFFF;
+    if (v != s_lastRcnt) {
+        printf("[sio] writeRCNT v=0x%04X mode=%d(%s) connected=%d\n",
+               (unsigned)v & 0xFFFF, (int)sio->mode, sioModeStr((int)sio->mode), s_netDriver.connected);
+        fflush(stdout);
+        s_lastRcnt = v;
+    }
+    return v;
+}
 
 /* NORMAL8/32/MULTI 均异步：netStart 发本机数据(source=0)并置 pending，return false 不调度
  * completeEvent。本机传输在对端数据到达（on_peer）时由 finishByMode 完成 + IRQ。
@@ -474,16 +489,29 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
 EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, int playerId) {
     s_netDriver.connected = connected ? 1 : 0;
     s_netDriver.playerId = playerId;
-    printf("[sio] set_peer connected=%d playerId=%d\n", s_netDriver.connected, s_netDriver.playerId);
+    struct GBASIO* sio = (core && core->board) ? &((struct GBA*)core->board)->sio : NULL;
+    if (sio) {
+        printf("[sio] set_peer connected=%d playerId=%d mode=%d(%s) siocnt=0x%04X rcnt=0x%04X\n",
+               s_netDriver.connected, s_netDriver.playerId, (int)sio->mode, sioModeStr((int)sio->mode),
+               (unsigned)sio->siocnt & 0xFFFF, (unsigned)sio->rcnt & 0xFFFF);
+    } else {
+        printf("[sio] set_peer connected=%d playerId=%d (no sio)\n", s_netDriver.connected, s_netDriver.playerId);
+    }
     fflush(stdout);
     /* attach 后若游戏已在 MULTI/NORMAL mode，主动设就绪位（兜底：游戏可能不再 writeSIOCNT）。
      * 与 netWriteSIOCNT 同逻辑。NORMAL 设 Si 位让游戏判定对端在线、从机才会写握手数据。 */
-    if (connected && core && core->board) {
-        struct GBA* gba = core->board;
-        struct GBASIO* sio = &gba->sio;
+    if (connected && sio) {
         if (sio->mode == GBA_SIO_MULTI) {
             sio->siocnt = GBASIOMultiplayerSetReady(sio->siocnt, 1);
             sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+            /* 兜底触发 MULTI 传输：游戏已在 MULTI mode 且已写 SIOCNT 后才 attach，
+             * netWriteSIOCNT 不会被调用，兜底逻辑不会触发。此处补触发。
+             * 主机（playerId=0）主动发起第一次传输以启动通信循环。 */
+            if (s_netDriver.playerId == 0 && !s_netDriver.pending) {
+                printf("[sio]   set_peer 兜底触发 MULTI netStart（游戏 attach 前已就绪）\n");
+                fflush(stdout);
+                netStart(&s_netDriver.d);
+            }
         } else if (sio->mode == GBA_SIO_NORMAL_8 || sio->mode == GBA_SIO_NORMAL_32) {
             sio->siocnt = GBASIONormalFillSi(sio->siocnt);
         }
