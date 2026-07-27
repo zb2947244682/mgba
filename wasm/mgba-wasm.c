@@ -435,11 +435,14 @@ static bool netStart(struct GBASIODriver* d) {
     printf("[sio] netStart mode=%d player=%d pending=%d connected=%d siocnt=0x%04X send=0x%08X\n",
            mode, n->playerId, n->pending, n->connected, (unsigned)sio->siocnt & 0xFFFF, (unsigned)send);
     fflush(stdout);
-    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: 本机查询 */
+    /* 先置 pending/lastSend 再 send：发送钩子可能同步递归回 on_peer（同步 harness 或
+     * 极快回声），若 pending 未先置，回声到达时被判为"迟到响应"丢弃，发起方永不完成、
+     * pending 反悬空。先置位保证任何时序下 on_peer 都能正确识别发起方态。 */
     n->pending = 1;
     if (mode == GBA_SIO_MULTI) {
         n->lastSend = send;
     }
+    mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: 本机查询 */
     return false;
 }
 
@@ -491,60 +494,109 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
         return; /* 未 attach */
     }
     unsigned peer = (data_lo & 0xFFFF) | ((data_hi & 0xFFFF) << 16);
-    /* 诊断：source: 0=对端查询(本机应回发) 1=对端响应(本机完成)。pending: 本机是否在等。
-     * 正常交替应见：一端 netStart(source=0) → 对端 on_peer src=0 回发 → 本端 on_peer src=1 完成。 */
     printf("[sio] on_peer mode=%d source=%d player=%d pending=%d peer=0x%04X\n",
            mode, source, s_netDriver.playerId, s_netDriver.pending, peer & 0xFFFF);
     fflush(stdout);
 
-    if (mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32) {
-        /* 双向异步 + source 防死循环。无线接收器协议是双向的（主机须收到从机响应），
-         * 不能照搬 mGBA lockstep（主机 finishNormal32 返回 0xFFFFFFFF 单向，主机永不拿从机数据）。
-         *
-         * 模型：发起方 netStart 发 source=0 查询、置 pending、return false 等 on_peer 完成。
-         *   接收方 on_peer 收 source=0：先读 my（finishByMode 会覆盖 SIODATA），再 finishByMode
-         *     写对端数据 + IRQ（本机处理对端查询），最后回发 my（source=1 响应）。
-         *   发起方 on_peer 收 source=1：finishByMode 写对端响应 + IRQ，清 pending，不回发。
-         *   全双工（两端同时 start，都 pending）：各自收 source=0 → finishByMode + 清 pending，
-         *     不回发；两端都用对端查询数据完成，无循环（beacon 型握手走此路径）。
-         *   source=1 永不回发 → 重复/迟到响应不会触发再回发，杜绝死循环。 */
-        int willEcho = (source == 0 && !s_netDriver.pending);
-        unsigned my = willEcho ? readLocalSend(sio, mode) : 0; /* finishByMode 会覆盖 SIODATA，须先读 */
-        printf("[sio] NORMAL on_peer src=%d willEcho=%d pending=%d → finishByMode(peer=0x%04X) + IRQ\n",
-               source, willEcho, s_netDriver.pending, peer & 0xFFFF);
+    /* bug3: 只处理与本机当前 mode 一致的帧。SIO 寄存器是别名的——
+     * SIODATA32_LO/HI(0x120/0x122) == SIOMULTI0/1，SIODATA8(0x12A) == SIOMLT_SEND。
+     * 模式切换期在途的异模式帧若照常 finish，会按错误模式写错寄存器。两端 mode 一致才处理。 */
+    if (mode != (int)sio->mode) {
+        printf("[sio] on_peer DROPPED: mode mismatch peer=%d(%s) local=%d(%s)\n",
+               mode, sioModeStr(mode), (int)sio->mode, sioModeStr((int)sio->mode));
         fflush(stdout);
-        finishByMode(sio, mode, peer, 0); /* 写对端数据到 SIODATA + IRQ */
+        return;
+    }
+
+    if (mode == GBA_SIO_NORMAL_8 || mode == GBA_SIO_NORMAL_32) {
+        /* 双向异步 + source 防死循环。每条路径都明确：是否 finish、是否回发、是否清 pending。
+         *   src=0 + !pending（接收方）：读 my → finish 写对端数据 + IRQ → 回发 my(src=1)。
+         *   src=0 + pending（全双工）：用对端查询数据完成，清 pending，不回发（beacon 型握手）。
+         *   src=1 + pending（发起方）：finish 写对端响应 + IRQ，清 pending，不回发。
+         *   src=1 + !pending（迟到/重复响应）：丢弃，不 finish 不回发（bug1：否则覆写 SIODATA+假IRQ）。
+         * source=1 永不回发 → 重复/迟到响应不会触发再回发，杜绝死循环。 */
         if (source == 0) {
             if (s_netDriver.pending) {
-                s_netDriver.pending = 0; /* 全双工：本机也在等，用此查询完成 */
+                s_netDriver.pending = 0;
                 printf("[sio]   全双工：用对端查询完成本机传输（不回发）\n");
+                finishByMode(sio, mode, peer, 0);
             } else {
-                printf("[sio]   接收方：回发本机数据 my=0x%04X (src=1)\n", my & 0xFFFF);
-                mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 回发本机数据 */
+                unsigned my = readLocalSend(sio, mode); /* finish 会覆盖 SIODATA，须先读 */
+                printf("[sio]   接收方：finishByMode(peer=0x%04X) + 回发 my=0x%04X (src=1)\n",
+                       peer & 0xFFFF, my & 0xFFFF);
+                finishByMode(sio, mode, peer, 0);
+                mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1);
             }
-        } else if (s_netDriver.pending) {
-            s_netDriver.pending = 0; /* 我的查询有响应了 */
-            printf("[sio]   发起方：收到响应，完成本机传输（清 pending，不回发）\n");
+        } else {
+            if (s_netDriver.pending) {
+                s_netDriver.pending = 0;
+                printf("[sio]   发起方：收到响应，finishByMode(peer=0x%04X) + IRQ（清 pending，不回发）\n",
+                       peer & 0xFFFF);
+                finishByMode(sio, mode, peer, 0);
+            } else {
+                printf("[sio]   迟到响应 DROPPED：本机未 pending，不 finish 不回发\n");
+            }
         }
         return;
     }
 
-    /* MULTI：只主机 start（sio.c:194），从机 on_peer 回发本机 SIOMLT_SEND 给主机。
-     * pending 区分主机 on_peer（收到从机回执，完成）与从机 on_peer（收到主机请求，回发+完成）。 */
-    if (s_netDriver.pending) {
-        s_netDriver.pending = 0;
-        printf("[sio] MULTI 主机 on_peer：收到从机回执，finishByMode(peer=0x%04X, my=lastSend=0x%04X)\n",
-               peer & 0xFFFF, s_netDriver.lastSend & 0xFFFF);
-        fflush(stdout);
-        finishByMode(sio, mode, peer, s_netDriver.lastSend);
-    } else {
-        unsigned my = readLocalSend(sio, mode);
-        printf("[sio] MULTI 从机 on_peer：收到主机请求，回发 my=0x%04X 并 finishByMode(peer=0x%04X)\n",
-               my & 0xFFFF, peer & 0xFFFF);
-        fflush(stdout);
-        mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1); /* source=1: 接收方回发 */
-        finishByMode(sio, mode, peer, my);
+    /* MULTI：只主机 start（sio.c:194）。source + pending 四象限明确：
+     *   src=0 + !pending（从机收到主机查询）：读 my → finish 写对端 + IRQ → 回发 my(src=1)。
+     *   src=1 + pending（主机收到从机回执）：finish(peer, lastSend) + IRQ，清 pending。
+     *   src=0 + pending / src=1 + !pending：迟到/错位 → 丢弃，不 finish 不回发（bug2：否则两端互发 src=1
+     *   无限回声风暴直至栈溢出——harness test-netplay.js 场景4 秒级复现）。 */
+    if (mode == GBA_SIO_MULTI) {
+        if (source == 0 && !s_netDriver.pending) {
+            unsigned my = readLocalSend(sio, mode);
+            printf("[sio] MULTI 从机 on_peer：收到主机查询，回发 my=0x%04X(src=1) + finishByMode(peer=0x%04X)\n",
+                   my & 0xFFFF, peer & 0xFFFF);
+            fflush(stdout);
+            finishByMode(sio, mode, peer, my);
+            mgba_net_send(mode, sio->siocnt, my & 0xFFFF, (my >> 16) & 0xFFFF, 1);
+        } else if (source == 1 && s_netDriver.pending) {
+            s_netDriver.pending = 0;
+            printf("[sio] MULTI 主机 on_peer：收到从机回执，finishByMode(peer=0x%04X, my=lastSend=0x%04X)\n",
+                   peer & 0xFFFF, s_netDriver.lastSend & 0xFFFF);
+            fflush(stdout);
+            finishByMode(sio, mode, peer, s_netDriver.lastSend);
+        } else {
+            printf("[sio] MULTI on_peer DROPPED: source=%d pending=%d（迟到/错位，不处理防风暴）\n",
+                   source, s_netDriver.pending);
+            fflush(stdout);
+        }
+        return;
     }
+}
+
+/* 纯测试钩子：在不加载/运行真实游戏的情况下，直接触发一次 netStart，
+ * 用于 harness 验证发起方路径（pending 置位、source=0 发送、return false 异步）。
+ * 仅 test-netplay.js 使用，正常运行不调用。不动模型逻辑。 */
+EMSCRIPTEN_KEEPALIVE void mgba_sio_test_start(struct mCore* core) {
+    if (!core || !core->board) return;
+    struct GBA* gba = core->board;
+    struct GBASIO* sio = &gba->sio;
+    if ((struct GBASIODriver*)&s_netDriver != sio->driver) return;
+    netStart(&s_netDriver.d);
+}
+
+/* 纯测试钩子：读取本机 SIODATA32（LO|HI），供 harness 断言接收方写入的数据。
+ * NORMAL32 用；其他 mode 返回 0。仅 test-netplay.js 使用。 */
+EMSCRIPTEN_KEEPALIVE unsigned mgba_sio_test_read_siodata32(struct mCore* core) {
+    if (!core || !core->board) return 0;
+    struct GBA* gba = core->board;
+    struct GBASIO* sio = &gba->sio;
+    unsigned lo = sio->p->memory.io[GBA_REG(SIODATA32_LO)] & 0xFFFF;
+    unsigned hi = sio->p->memory.io[GBA_REG(SIODATA32_HI)] & 0xFFFF;
+    return lo | (hi << 16);
+}
+
+/* 纯测试钩子：直接设置 sio->mode，让 harness 不依赖真实游戏写 SIOCNT 即可
+ * 切到 NORMAL32/MULTI 测试对应分支。仅 test-netplay.js 使用，不动模型逻辑。 */
+EMSCRIPTEN_KEEPALIVE void mgba_sio_test_set_mode(struct mCore* core, int mode) {
+    if (!core || !core->board) return;
+    struct GBA* gba = core->board;
+    struct GBASIO* sio = &gba->sio;
+    sio->mode = (enum GBASIOMode)mode;
 }
 
 EMSCRIPTEN_KEEPALIVE void mgba_sio_detach(struct mCore* core) {

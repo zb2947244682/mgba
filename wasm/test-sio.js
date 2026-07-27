@@ -9,7 +9,8 @@ createModule({ wasmBinary }).then(module => {
   const create = cwrap('mgba_create', 'number', []);
   const attach = cwrap('mgba_sio_attach', 'number', ['number']);
   const setPeer = cwrap('mgba_sio_set_peer', null, ['number', 'number', 'number']);
-  const onPeer = cwrap('mgba_sio_on_peer', null, ['number', 'number', 'number', 'number']);
+  const onPeer = cwrap('mgba_sio_on_peer', null, ['number', 'number', 'number', 'number', 'number']);
+  const setMode = cwrap('mgba_sio_test_set_mode', null, ['number', 'number']);
   const detach = cwrap('mgba_sio_detach', null, ['number']);
   const reset = cwrap('mgba_reset', null, ['number']);
   const destroy = cwrap('mgba_destroy', null, ['number']);
@@ -31,6 +32,7 @@ createModule({ wasmBinary }).then(module => {
   //   source=0（对端查询）且本机非 pending → 纯接收方，回发本机数据(source=1)响应 → sent 增 1。
   //   source=1（对端响应）→ 不回发（防死循环）→ sent 不增。
   reset(core);
+  setMode(core, 1); // NORMAL32：on_peer 现校验 mode==sio->mode，须先设一致
   onPeer(core, 1, 0, 0x5678, 0x1234); // source=0, pending=0 → 应回发
   console.log('on_peer(NORMAL32, src=0, no pending) sent frames:', sent.length);
   if (sent.length !== 1) throw new Error('NORMAL on_peer src=0 receiver should echo once');
