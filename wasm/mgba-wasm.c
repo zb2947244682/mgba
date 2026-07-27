@@ -502,6 +502,12 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, i
      * 与 netWriteSIOCNT 同逻辑。NORMAL 设 Si 位让游戏判定对端在线、从机才会写握手数据。 */
     if (connected && sio) {
         if (sio->mode == GBA_SIO_MULTI) {
+            /* 补正 SIOCNT 位：游戏写 SIOCNT=0x600F 时驱动未 attach，id=0 connected=0
+             * 导致 GBASIOWriteSIOCNT 的 MULTI handler 设 Slave=1（sio.c:180），
+             * 主机游戏读到 Slave=1 以为自己是从机，等主机发起 → 死锁。
+             * 同理 Id 位 = 0 让双方都以为自己是主机。 */
+            sio->siocnt = GBASIOMultiplayerSetSlave(sio->siocnt, !!s_netDriver.playerId);
+            sio->siocnt = GBASIOMultiplayerSetId(sio->siocnt, s_netDriver.playerId);
             sio->siocnt = GBASIOMultiplayerSetReady(sio->siocnt, 1);
             /* 补设 RCNT 位：游戏写 SIOCNT=0x600F 时 mode 尚为 GPIO，GBASIOWriteSIOCNT
              * 的 MULTI handler 跳过了 SC=1 和 SD=1 的设置（sio.c:191）；后续游戏写
