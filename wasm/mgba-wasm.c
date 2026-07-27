@@ -464,7 +464,11 @@ static bool netStart(struct GBASIODriver* d) {
     if (mode == GBA_SIO_MULTI) {
         n->lastSend = send;
     }
+    /* 置 sending 防重入：mgba_net_send 可能同步回调 on_peer（同步 harness），
+     * 后者若触发帧同步 netStart，会在 sending 检查处跳过，防止无限递归。 */
+    n->sending = 1;
     mgba_net_send(mode, sio->siocnt, send & 0xFFFF, (send >> 16) & 0xFFFF, 0); /* source=0: 本机查询 */
+    n->sending = 0;
     return false;
 }
 
