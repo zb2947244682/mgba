@@ -503,7 +503,14 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, i
     if (connected && sio) {
         if (sio->mode == GBA_SIO_MULTI) {
             sio->siocnt = GBASIOMultiplayerSetReady(sio->siocnt, 1);
-            sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);
+            /* 补设 RCNT 位：游戏写 SIOCNT=0x600F 时 mode 尚为 GPIO，GBASIOWriteSIOCNT
+             * 的 MULTI handler 跳过了 SC=1 和 SD=1 的设置（sio.c:191）；后续游戏写
+             * RCNT=0x0000 时 _switchMode 才切到 MULTI，但此时 sio->rcnt 已被清零。
+             * 缩略语：SC=Serial Clock（主机驱动时钟），SD=Serial Data（数据线），
+             * SI=Serial Input（对端 SO 的镜像）。设齐后游戏收到"电缆已激活"信号。 */
+            sio->rcnt = GBASIORegisterRCNTFillSc(sio->rcnt);                /* SC=1 */
+            sio->rcnt = GBASIORegisterRCNTSetSd(sio->rcnt, 1);              /* SD=1 */
+            sio->rcnt = GBASIORegisterRCNTSetSi(sio->rcnt, !!s_netDriver.playerId); /* SI=1 对从机 */
             /* 兜底触发 MULTI 传输：游戏已在 MULTI mode 且已写 SIOCNT 后才 attach，
              * netWriteSIOCNT 不会被调用，兜底逻辑不会触发。此处补触发。
              * 主机（playerId=0）主动发起第一次传输以启动通信循环。 */
