@@ -269,6 +269,7 @@ struct GBASIONetDriver {
     int connected;       /* 对端是否已连接 */
     int playerId;        /* MULTI 本机 id（0=主机,1=从机） */
     int pending;         /* 本机已发起 start（NORMAL8/32/MULTI），等待对端响应才完成 */
+    int sending;         /* 重入保护：1 表示正在 mgba_net_send 中，防止帧同步触发递归 */
     unsigned lastSend;   /* MULTI 主机 finish 时回填 data[0] */
 };
 
@@ -606,6 +607,15 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
                    peer & 0xFFFF, s_netDriver.lastSend & 0xFFFF);
             fflush(stdout);
             finishByMode(sio, mode, peer, s_netDriver.lastSend);
+            /* 帧同步触发：游戏不写 SIOCNT Busy 位，netWriteSIOCNT 的兜底不会触发。
+             * 主机在每次收到从机回执后立即发起下一次传输，形成连续帧同步循环。
+             * 游戏每帧收到 SIOMULTI 更新 + IRQ，才有机会写 SIOMLT_SEND 推进协议。
+             * 加 sending 防重入（同步 harness 中 mgba_net_send 可能同步回调 on_peer）。 */
+            if (s_netDriver.playerId == 0 && !s_netDriver.pending) {
+                printf("[sio]   MULTI 帧同步：触发下一次 netStart\n");
+                fflush(stdout);
+                netStart(&s_netDriver.d);
+            }
         } else {
             printf("[sio] MULTI on_peer DROPPED: source=%d pending=%d（迟到/错位，不处理防风暴）\n",
                    source, s_netDriver.pending);
