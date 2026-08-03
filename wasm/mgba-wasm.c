@@ -264,6 +264,23 @@ EM_JS(void, mgba_net_send, (int mode, int siocnt, unsigned data_lo, unsigned dat
     }
 });
 
+/* 帧锁步出向钩子（JS 转发给对端）。
+ * mgba_net_frame：帧包 {帧号 n, 本帧 SIOMLT_SEND, 本帧是否 start 过}。
+ * mgba_net_mode：本端 SIO mode 变化（JS 据此向对端发 mb/me 协商锁步激活）。 */
+EM_JS(void, mgba_net_frame, (int n, unsigned send, int start), {
+    if (typeof Module.__netFrameSend === 'function') {
+        Module.__netFrameSend(n, send, start);
+    }
+});
+EM_JS(void, mgba_net_mode, (int mode), {
+    if (typeof Module.__netModeChange === 'function') {
+        Module.__netModeChange(mode);
+    }
+});
+
+/* 帧包环缓冲容量。S 最大 10，stall 超过 64 帧时靠 peerN 序号校验防误配。 */
+#define LS_RING 64
+
 struct GBASIONetDriver {
     struct GBASIODriver d;
     int connected;       /* 对端是否已连接 */
@@ -271,6 +288,20 @@ struct GBASIONetDriver {
     int pending;         /* 本机已发起 start（NORMAL8/32/MULTI），等待对端响应才完成 */
     int sending;         /* 重入保护：1 表示正在 mgba_net_send 中，防止帧同步触发递归 */
     unsigned lastSend;   /* MULTI 主机 finish 时回填 data[0] */
+
+    /* ── 帧边界锁步（MULTI 专用，lockstepS>0 时启用；协议规则见 PLAN §6.3）── */
+    int lockstepS;           /* 帧差容忍（0=关闭锁步，走旧异步模型） */
+    int remoteMulti;         /* 对端已报进入 MULTI（mgba_sio_on_peer_mode） */
+    int lsActive;            /* 锁步激活中：双端都在 MULTI，帧号对齐计数 */
+    int lsFrame;             /* 激活以来已完成帧数（下一待跑帧号） */
+    int lsStartedThisFrame;  /* 本帧内 netStart 已触发过（每帧最多一笔） */
+    unsigned lsStartSend;    /* 本帧 start 时刻的 SIOMLT_SEND（帧包 send 字段） */
+    unsigned lsLocalSend[LS_RING];   /* 本端各帧 send */
+    int      lsLocalStart[LS_RING];  /* 本端各帧 start 标志 */
+    unsigned lsPeerSend[LS_RING];    /* 对端各帧 send */
+    int      lsPeerStart[LS_RING];   /* 对端各帧 start 标志 */
+    int      lsPeerN[LS_RING];       /* 对端包帧号（校验防环缓冲回绕误配） */
+    int      lsPeerValid[LS_RING];   /* 对端包是否已收到 */
 };
 
 static struct GBASIONetDriver s_netDriver;
@@ -349,6 +380,57 @@ static const char* sioModeStr(int m) {
         default: return "?";
     }
 }
+
+/* ── 帧边界锁步辅助（协议规则唯一事实来源，harness test-netplay.js 据此断言）── */
+
+/* 完成一次 MULTI 传输：data[0]=主机 send、data[1]=从机 send（SIOMULTI 寄存器按
+ * 玩家 id 编址，两台机器内容一致，与本地角色无关），2P 其余填 0xFFFF。 */
+static void lsFinishMulti(struct GBASIO* sio, unsigned hostSend, unsigned guestSend) {
+    uint16_t data[4];
+    data[0] = (uint16_t)(hostSend & 0xFFFF);
+    data[1] = (uint16_t)(guestSend & 0xFFFF);
+    data[2] = 0xFFFF;
+    data[3] = 0xFFFF;
+    GBASIOMultiplayerFinishTransfer(sio, data, 0);
+    /* 强制 raise IRQ：游戏可能未设 SIOCNT Irq 使能位，无 IRQ 则游戏逻辑不推进。 */
+    GBARaiseIRQ(sio->p, GBA_IRQ_SIO, 0);
+    printf("[sio] ls finish_multi host=0x%04X guest=0x%04X player=%d\n",
+           hostSend & 0xFFFF, guestSend & 0xFFFF, s_netDriver.playerId);
+    fflush(stdout);
+}
+
+/* 清锁步运行时状态（保留 lockstepS/connected/playerId 等 JS 配置）。 */
+static void lsResetRuntime(struct GBASIONetDriver* n) {
+    n->lsActive = 0;
+    n->lsFrame = 0;
+    n->lsStartedThisFrame = 0;
+    n->lsStartSend = 0;
+    memset(n->lsPeerValid, 0, sizeof(n->lsPeerValid));
+    memset(n->lsLocalStart, 0, sizeof(n->lsLocalStart));
+}
+
+/* 激活判定：lockstepEnabled && 已连接 && 本端 MULTI && 对端已报 MULTI。
+ * 激活时帧号归 0；退出时直接清 siocnt 的 Start/Busy 位（bit7）——不调 FinishTransfer，
+ * 避免模式切换期按错误模式写别名寄存器（SIOMULTI0/1 == SIODATA32_LO/HI）。 */
+static void lsUpdateActive(struct GBASIONetDriver* n, struct GBASIO* sio) {
+    int was = n->lsActive;
+    n->lsActive = n->lockstepS > 0 && n->connected && sio &&
+                  sio->mode == GBA_SIO_MULTI && n->remoteMulti;
+    if (n->lsActive && !was) {
+        n->lsFrame = 0;
+        n->lsStartedThisFrame = 0;
+        memset(n->lsPeerValid, 0, sizeof(n->lsPeerValid));
+        memset(n->lsLocalStart, 0, sizeof(n->lsLocalStart));
+        printf("[sio] ls ACTIVATE S=%d player=%d（帧号归 0，开始门控）\n", n->lockstepS, n->playerId);
+        fflush(stdout);
+    } else if (!n->lsActive && was) {
+        if (sio) sio->siocnt &= ~0x0080; /* 清 Start/Busy 位防卡死 */
+        n->lsStartedThisFrame = 0;
+        printf("[sio] ls DEACTIVATE（退出锁步，自由运行）\n");
+        fflush(stdout);
+    }
+}
+
 static bool netInit(struct GBASIODriver* d) { (void)d; return true; }
 static void netDeinit(struct GBASIODriver* d) { (void)d; }
 static void netReset(struct GBASIODriver* d) {
@@ -356,6 +438,10 @@ static void netReset(struct GBASIODriver* d) {
     n->pending = 0;
     n->lastSend = 0;
     n->sending = 0;
+    /* 游戏复位（软重启）：清锁步运行时，保留 JS 配置；若仍在 MULTI 会经
+     * lsUpdateActive 重新激活并帧号归 0，两端若都复位则自然重新对齐。 */
+    lsResetRuntime(n);
+    lsUpdateActive(n, d->p);
 }
 static uint32_t netId(const struct GBASIODriver* d) { (void)d; return 0x574F524E; /* 'NETW' */ }
 static bool netLoadState(struct GBASIODriver* d, const void* s, size_t sz) { (void)d; (void)s; (void)sz; return false; }
@@ -371,6 +457,9 @@ static void netSetMode(struct GBASIODriver* d, enum GBASIOMode mode) {
     n->sending = 0;
     printf("[sio] setMode mode=%d(%s) pending cleared\n", (int)mode, sioModeStr((int)mode));
     fflush(stdout);
+    /* 帧锁步：模式变化影响激活态（进出 MULTI），并通知前端发 mb/me 协商。 */
+    lsUpdateActive(n, d->p);
+    mgba_net_mode((int)mode);
 }
 static bool netHandlesMode(struct GBASIODriver* d, enum GBASIOMode mode) {
     (void)d;
@@ -419,10 +508,14 @@ static uint16_t netWriteSIOCNT(struct GBASIODriver* d, uint16_t v) {
         /* 兜底触发 MULTI 传输：绿宝石 MULTI mode 的 host 不写 SIOCNT Busy bit
          *（mGBA sio.c:193 要求 Busy 才 _startTransfer），导致无 MULTI 传输、双方死锁
          *（游戏轮询 SIOMULTI 等对端数据，driver 等游戏写 Busy）。driver 在 host 写
-         * SIOCNT 且空闲时主动触发一次 netStart（模仿 host 写 Busy），pending=0 防重复，
-         * on_peer 收到从机回执清 pending 后，下次 writeSIOCNT 再触发。从机被动，不触发。 */
-        if (s_netDriver.playerId == 0 && !s_netDriver.pending) {
-            netStart(d);
+         * SIOCNT 且空闲时主动触发一次 netStart（模仿 host 写 Busy）。
+         * 旧异步模型用 pending 防重复；帧锁步模型用 lsStartedThisFrame 限每帧一笔。 */
+        if (s_netDriver.playerId == 0) {
+            if (s_netDriver.lockstepS > 0) {
+                if (!s_netDriver.lsStartedThisFrame) netStart(d);
+            } else if (!s_netDriver.pending) {
+                netStart(d);
+            }
         }
     } else if (sio->mode == GBA_SIO_NORMAL_8 || sio->mode == GBA_SIO_NORMAL_32) {
         v = GBASIONormalFillSi(v);
@@ -454,6 +547,19 @@ static bool netStart(struct GBASIODriver* d) {
     struct GBASIO* sio = d->p;
     int mode = (int)sio->mode;
     unsigned send = readLocalSend(sio, mode);
+    /* 帧锁步（MULTI）：不网络发送、不置 pending。只记录"本帧 start 过 + start 时刻的
+     * send"，return false 异步；完成推迟到 mgba_sio_frame_end 的帧边界（S 帧后，
+     * 两端用同一份帧包数据各自本地 finish）。每帧最多记录一笔（协议上游戏每帧一笔）。 */
+    if (n->lockstepS > 0 && mode == GBA_SIO_MULTI) {
+        if (!n->lsStartedThisFrame) {
+            n->lsStartedThisFrame = 1;
+            n->lsStartSend = send;
+            printf("[sio] ls netStart frame=%d player=%d send=0x%04X（记录，帧边界完成）\n",
+                   n->lsFrame, n->playerId, send & 0xFFFF);
+            fflush(stdout);
+        }
+        return false;
+    }
     /* 诊断：mode: 0=NORMAL8 1=NORMAL32 2=MULTI 3=UART。playerId: 0=主机 1=从机。
      * 若 netStart 从不触发，说明游戏未进入 SIO 传输（mode/Ready/Si 位未就绪）。 */
     printf("[sio] netStart mode=%d player=%d pending=%d connected=%d siocnt=0x%04X send=0x%08X\n",
@@ -487,6 +593,9 @@ EMSCRIPTEN_KEEPALIVE int mgba_sio_attach(struct mCore* core) {
     d->finishMultiplayer = NULL; d->finishNormal8 = NULL; d->finishNormal32 = NULL;
     s_netDriver.connected = 0; s_netDriver.playerId = 0;
     s_netDriver.pending = 0; s_netDriver.lastSend = 0; s_netDriver.sending = 0;
+    /* 帧锁步：配置清零（set_lockstep/set_peer/on_peer_mode 由 JS 重新下发）。 */
+    s_netDriver.lockstepS = 0; s_netDriver.remoteMulti = 0;
+    lsResetRuntime(&s_netDriver);
     core->setPeripheral(core, mPERIPH_GBA_LINK_PORT, d);
     printf("[sio] attach ok (driver 已注册到 LINK_PORT)\n");
     fflush(stdout);
@@ -497,6 +606,8 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_set_peer(struct mCore* core, int connected, i
     s_netDriver.connected = connected ? 1 : 0;
     s_netDriver.playerId = playerId;
     struct GBASIO* sio = (core && core->board) ? &((struct GBA*)core->board)->sio : NULL;
+    /* 帧锁步：连接状态变化影响激活态。 */
+    lsUpdateActive(&s_netDriver, sio);
     if (sio) {
         printf("[sio] set_peer connected=%d playerId=%d mode=%d(%s) siocnt=0x%04X rcnt=0x%04X\n",
                s_netDriver.connected, s_netDriver.playerId, (int)sio->mode, sioModeStr((int)sio->mode),
@@ -631,6 +742,114 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer(struct mCore* core, int mode, int sou
     }
 }
 
+/* ==================== 帧边界锁步导出（MULTI 专用）====================
+ * 协议规则（PLAN §6.3）：
+ *   active = lockstepS>0 && connected && 本端 MULTI && 对端已报 MULTI；激活时帧号归 0。
+ *   门控：跑第 m 帧前需对端包 m-S（m<S 不门控）→ mgba_sio_gate。
+ *   帧包：frame_end(f) 记录本帧 {send,start} 并经 __netFrameSend 发出。
+ *   完成：frame_end(f) 且 f>=S 时按帧 f-S 的 start 标志完成传输（主机看本端标志、
+ *   从机看对端标志），数据取两端帧 f-S 的包 → 链路仿真延迟恒 S 帧，确定无错位。
+ *   未激活：自由跑，start 的传输以 0xFFFF 兜底完成（模拟线缆空挂）。 */
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_set_lockstep(struct mCore* core, int s) {
+    if (!core) return;
+    if (s < 0) s = 0;
+    if (s > 10) s = 10; /* S 上限：再大链路仿真延迟不可玩，ring 也兜不住错位 */
+    s_netDriver.lockstepS = s;
+    struct GBASIO* sio = core->board ? &((struct GBA*)core->board)->sio : NULL;
+    lsUpdateActive(&s_netDriver, sio);
+    printf("[sio] set_lockstep S=%d\n", s_netDriver.lockstepS);
+    fflush(stdout);
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer_mode(struct mCore* core, int multi) {
+    if (!core) return;
+    s_netDriver.remoteMulti = multi ? 1 : 0;
+    struct GBASIO* sio = core->board ? &((struct GBA*)core->board)->sio : NULL;
+    lsUpdateActive(&s_netDriver, sio);
+    printf("[sio] on_peer_mode multi=%d\n", s_netDriver.remoteMulti);
+    fflush(stdout);
+}
+
+EMSCRIPTEN_KEEPALIVE int mgba_sio_gate(struct mCore* core) {
+    if (!core || !core->board) return 1;
+    if (!s_netDriver.lsActive) return 1;
+    int k = s_netDriver.lsFrame - s_netDriver.lockstepS;
+    if (k < 0) return 1;
+    int slot = k % LS_RING;
+    return (s_netDriver.lsPeerValid[slot] && s_netDriver.lsPeerN[slot] == k) ? 1 : 0;
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_on_peer_frame(struct mCore* core, int n, unsigned send, int start) {
+    if (!core || n < 0) return;
+    int slot = n % LS_RING;
+    s_netDriver.lsPeerSend[slot] = send & 0xFFFF;
+    s_netDriver.lsPeerStart[slot] = start ? 1 : 0;
+    s_netDriver.lsPeerN[slot] = n;
+    s_netDriver.lsPeerValid[slot] = 1;
+    /* 去重打印：每 60 帧（约 1 秒）报一次水位，便于观察锁步是否活着。 */
+    if (n % 60 == 0) {
+        printf("[sio] ls peer_frame n=%d send=0x%04X start=%d（local frame=%d）\n",
+               n, send & 0xFFFF, start ? 1 : 0, s_netDriver.lsFrame);
+        fflush(stdout);
+    }
+}
+
+EMSCRIPTEN_KEEPALIVE unsigned mgba_sio_frame_end(struct mCore* core) {
+    if (!core || !core->board) return 0;
+    struct GBA* gba = core->board;
+    struct GBASIO* sio = &gba->sio;
+    struct GBASIONetDriver* n = &s_netDriver;
+    if (n->lockstepS <= 0 || sio->mode != GBA_SIO_MULTI) {
+        n->lsStartedThisFrame = 0;
+        return 0;
+    }
+    unsigned send = n->lsStartedThisFrame ? n->lsStartSend
+                                          : readLocalSend(sio, GBA_SIO_MULTI);
+    int start = n->lsStartedThisFrame;
+    n->lsStartedThisFrame = 0;
+    if (!n->lsActive) {
+        /* 未激活（对端未进 MULTI）：传输以 0xFFFF 兜底完成（硬件上空挂线缆时
+         * 主机读回自己的 send、其余槽位 0xFFFF），不计帧、不发帧包。 */
+        if (start) {
+            unsigned hostSend = n->playerId == 0 ? send : 0xFFFF;
+            unsigned guestSend = n->playerId == 1 ? send : 0xFFFF;
+            printf("[sio] ls 未激活：start=0x%04X 以 0xFFFF 兜底完成\n", send & 0xFFFF);
+            lsFinishMulti(sio, hostSend, guestSend);
+        }
+        return send;
+    }
+    int f = n->lsFrame;
+    int slot = f % LS_RING;
+    n->lsLocalSend[slot] = send;
+    n->lsLocalStart[slot] = start;
+    mgba_net_frame(f, send, start);
+    if (f >= n->lockstepS) {
+        int k = f - n->lockstepS;
+        int ks = k % LS_RING;
+        int peerOk = n->lsPeerValid[ks] && n->lsPeerN[ks] == k;
+        /* 主机侧传输由本端 start 标志驱动；从机侧由对端（主机）帧包的 start 标志驱动。
+         * 两端用同一份数据在各自的帧 f 边界本地完成 → 双端 SIOMULTI 内容一致。 */
+        int hostStart = n->playerId == 0 ? n->lsLocalStart[ks]
+                                         : (peerOk ? n->lsPeerStart[ks] : 0);
+        if (hostStart) {
+            unsigned hostSend = n->playerId == 0 ? n->lsLocalSend[ks] : n->lsPeerSend[ks];
+            unsigned guestSend = n->playerId == 0 ? (peerOk ? n->lsPeerSend[ks] : 0xFFFF)
+                                                  : n->lsLocalSend[ks];
+            printf("[sio] ls 帧边界完成 frame=%d k=%d host=0x%04X guest=0x%04X\n",
+                   f, k, hostSend & 0xFFFF, guestSend & 0xFFFF);
+            lsFinishMulti(sio, hostSend, guestSend);
+        }
+    }
+    n->lsFrame++;
+    return send;
+}
+
+EMSCRIPTEN_KEEPALIVE void mgba_sio_finish_multi(struct mCore* core, unsigned hostSend, unsigned guestSend) {
+    if (!core || !core->board) return;
+    lsFinishMulti(&((struct GBA*)core->board)->sio, hostSend, guestSend);
+}
+
 /* 纯测试钩子：在不加载/运行真实游戏的情况下，直接触发一次 netStart，
  * 用于 harness 验证发起方路径（pending 置位、source=0 发送、return false 异步）。
  * 仅 test-netplay.js 使用，正常运行不调用。不动模型逻辑。 */
@@ -654,12 +873,29 @@ EMSCRIPTEN_KEEPALIVE unsigned mgba_sio_test_read_siodata32(struct mCore* core) {
 }
 
 /* 纯测试钩子：直接设置 sio->mode，让 harness 不依赖真实游戏写 SIOCNT 即可
- * 切到 NORMAL32/MULTI 测试对应分支。仅 test-netplay.js 使用，不动模型逻辑。 */
+ * 切到 NORMAL32/MULTI 测试对应分支。仅 test-netplay.js 使用，不动模型逻辑。
+ * 与真实模式切换同路径：触发激活判定与模式通知（harness 可捕获 __netModeChange）。 */
 EMSCRIPTEN_KEEPALIVE void mgba_sio_test_set_mode(struct mCore* core, int mode) {
     if (!core || !core->board) return;
     struct GBA* gba = core->board;
     struct GBASIO* sio = &gba->sio;
     sio->mode = (enum GBASIOMode)mode;
+    lsUpdateActive(&s_netDriver, sio);
+    mgba_net_mode(mode);
+}
+
+/* 纯测试钩子：写本机 SIOMLT_SEND，让 harness 模拟"游戏已 arm 发送寄存器"。 */
+EMSCRIPTEN_KEEPALIVE void mgba_sio_test_write_send(struct mCore* core, unsigned v) {
+    if (!core || !core->board) return;
+    struct GBASIO* sio = &((struct GBA*)core->board)->sio;
+    sio->p->memory.io[GBA_REG(SIOMLT_SEND)] = v & 0xFFFF;
+}
+
+/* 纯测试钩子：读 SIOMULTI0..3（idx 0-3），供 harness 断言 finish_multi 写入的数据。 */
+EMSCRIPTEN_KEEPALIVE unsigned mgba_sio_test_read_multireg(struct mCore* core, int idx) {
+    if (!core || !core->board || idx < 0 || idx > 3) return 0xFFFF;
+    struct GBASIO* sio = &((struct GBA*)core->board)->sio;
+    return sio->p->memory.io[GBA_REG(SIOMULTI0) + idx] & 0xFFFF;
 }
 
 EMSCRIPTEN_KEEPALIVE void mgba_sio_detach(struct mCore* core) {
@@ -668,4 +904,8 @@ EMSCRIPTEN_KEEPALIVE void mgba_sio_detach(struct mCore* core) {
     s_netDriver.connected = 0;
     s_netDriver.pending = 0;
     s_netDriver.sending = 0;
+    /* 断开联机：锁步一并关闭（gate 恒放行，不再发帧包/模式通知之外的状态）。 */
+    s_netDriver.lockstepS = 0;
+    s_netDriver.remoteMulti = 0;
+    lsResetRuntime(&s_netDriver);
 }
